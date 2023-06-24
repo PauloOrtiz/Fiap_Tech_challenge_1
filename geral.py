@@ -182,19 +182,19 @@ def run():
         st.write("""
         ## Análise
 
-        # Recomendações
+        ### Recomendações
 
         Com base na análise dos dados, eu recomendaria as seguintes ações estratégicas:
 
-        # Mitigar Riscos: 
+        ### Mitigar Riscos: 
         
         Devemos buscar maneiras de mitigar o risco associado à nossa dependência das exportações para o Paraguai e a Rússia. Isso pode incluir a diversificação de nossos mercados de exportação, desenvolvendo relações comerciais com um maior número de países.
 
-        # Explorar Oportunidades: 
+        ### Explorar Oportunidades: 
         
         Também devemos explorar oportunidades de expandir ainda mais nossas vendas nos mercados onde já temos uma presença forte. Isso pode incluir a identificação de novas oportunidades de negócios, a expansão de nossas ofertas de produtos ou a formação de parcerias estratégicas.
 
-        # Desenvolver mercados emergentes: 
+        ### Desenvolver mercados emergentes: 
         
         Finalmente, devemos olhar para a longa lista de países em 'Others' como mercados emergentes potenciais. Embora o valor das exportações para cada um desses países possa ser pequeno no momento, eles podem representar oportunidades significativas de crescimento a longo prazo.
 
