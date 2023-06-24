@@ -23,13 +23,14 @@ df_total = pd.read_csv('./src/data/total_final.csv')
 #Titulo de Página
 image = Image.open("./src/img/download.jpg")
 st.image(image)
+st.title("Análise da Exportação de Vinhos Brasileiros")
 
 # Layout do aplicativo
 tab0, tab1, tab2, tab3= st.tabs(["Inicio","Dados Gerais", "Paises", "Sobre"])
 
 with tab0:
 
-    st.title("Análise da Exportação de Vinhos Brasileiros")
+    
         
     st.write("""
         ## Bem-vindos à análise de exportação de vinhos do Brasil
@@ -67,15 +68,27 @@ with tab1:
 
     
 
-    # Plotar o gráfico de linha
-    df_resultado = df_resultado.iloc[:-1]
-    # Cria um gráfico de linhas
-    fig = px.line(df_resultado, x='anos', y='total', title='Total por Ano')
+    st.write(
+    """
+    ## Análise do Valor Médio de Venda por Litro de Vinho ao longo de 15 Anos
 
-    # Atualiza os rótulos do eixo x para rotacionar em 45 graus
+    Prezados acionistas,
+
+    É com grande satisfação que compartilhamos os resultados obtidos ao longo dos últimos 15 anos na venda de nosso vinho. Nesse período, observamos uma notável dinâmica no valor médio de venda por litro, o que demonstra o esforço contínuo em melhorar a qualidade de nossos produtos e a adaptação às demandas de mercado.
+
+    No gráfico abaixo, você verá a evolução do valor médio de venda por litro de vinho de 2007 a 2021. Os dados representam uma média anual, o que proporciona uma visão clara das tendências ao longo do tempo. 
+
+    Ressaltamos que a nossa unidade de medida considera 1 kg de uva igual a 1 litro de vinho. Essa é uma aproximação comum na indústria e permite uma fácil interpretação e comparação dos dados.
+
+    Analise os dados e observe o compromisso da nossa equipe em buscar os melhores resultados e a valorização constante dos nossos produtos. 
+
+    Para quaisquer dúvidas ou esclarecimentos adicionais, não hesitem em nos contactar.
+    """
+    )
+    line = px.line(df_resultado, x='anos', y='total').update_traces(mode='lines')    
+    scatter = px.scatter(df_resultado, x='anos', y='total').update_traces(mode='markers', hovertemplate='Ano: %{x} <br>Valor: U$ %{y}')    
+    fig = go.Figure(data=line.data + scatter.data)    
     fig.update_xaxes(tickangle=45)
-
-    # Exibe o gráfico no Streamlit
     st.plotly_chart(fig)
 
 with tab2:
