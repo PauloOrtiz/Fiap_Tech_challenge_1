@@ -18,9 +18,9 @@ def run():
 
         ### Professor:
 
-        Edgard
+        Edgard Joseph Kiriyama 
 
-        Matheus    
+        Matheus Pavani    
 
         
         ### Base dados:
