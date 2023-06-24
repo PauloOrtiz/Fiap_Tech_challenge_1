@@ -99,7 +99,7 @@ with tab1:
     )
 
     st.plotly_chart(fig)
-    
+
     st.markdown('''
 
     ## Relatório de Vendas dos Últimos 15 Anos
@@ -136,7 +136,7 @@ with tab1:
 
     É com grande satisfação que apresentamos o relatório de vendas dos últimos 15 anos. As informações aqui fornecidas oferecem uma visão clara da evolução das nossas vendas, destacando os pontos altos e baixos deste período.
 
-    Observe, a partir dos dados plotados, que nossas vendas passaram por períodos de pico, como em 2009, onde alcançamos a incrível marca de mais de 25 milhões, seguido por uma desaceleração nos anos seguintes. Contudo, a resiliência e capacidade de adaptação do nosso negócio permitiram uma recuperação consistente ao longo dos anos. 
+    Observe, a partir da demostração de dados, que nossas vendas passaram por períodos de pico, como em 2009, onde alcançamos a incrível marca de mais de 25 milhões, seguido por uma desaceleração nos anos seguintes. Contudo, a resiliência e capacidade de adaptação do nosso negócio permitiram uma recuperação consistente ao longo dos anos. 
 
     A tendência de crescimento que observamos desde 2016, culminando em mais de 8 milhões em vendas em 2021, reforça a força da nossa empresa no mercado. Esses resultados são reflexo do nosso comprometimento com a qualidade e inovação constante dos nossos produtos e serviços.
 
