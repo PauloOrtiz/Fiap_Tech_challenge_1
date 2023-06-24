@@ -46,8 +46,6 @@ df_resultado = df_resultado.reset_index()
 df_resultado = df_resultado.rename(columns={'index':'anos'})
 df_resultado = df_resultado.round(2)
 
-print(df_resultado)
-
 #criando um dataframe dos volume e valores de vendas dos ultimos 15 anos
 df_valor_total = df_valor[['Total']]
 df_valor_total = df_valor_total.rename(columns={'Total':'Valor (US$)'})
@@ -61,8 +59,21 @@ df_total_final['Origem'] = 'Brasil'
 df_total_final = df_total_final[['Origem', 'Volume KG', 'Valor (US$)']]
 df_total_final = df_total_final.iloc[:-1]
 
+#criando os valores Totais por anos:
+df_valor_2 = df_valor.iloc[:-1]
+df_valor_2 =df_valor_2.reset_index()
+df_valor_2 = df_valor_2.drop(columns=['País', 'Total'])
+total_por_ano = df_valor_2.sum()
+df_total_por_ano = total_por_ano.reset_index()
+df_total_por_ano.columns = ['Anos', 'Total']
 
-
+#criando os Volumetria totais por anos:
+df_volume_2 = df_volume.iloc[:-1]
+df_volume_2 =df_volume_2.reset_index()
+df_volume_2 = df_volume_2.drop(columns=['País', 'Total'])
+volume_por_ano = df_volume_2.sum()
+df_volume_por_ano = volume_por_ano.reset_index()
+df_volume_por_ano.columns = ['Anos', 'Total']
 
 #exportanto os dataframes tratados:
 
@@ -70,3 +81,5 @@ df_valor.to_csv('./src/data/valores.csv', index=True)
 df_volume.to_csv('./src/data/volume.csv', index=True)
 df_resultado.to_csv('./src/data/resultado.csv', index=False)
 df_total_final.to_csv('./src/data/total_final.csv', index=True)
+df_total_por_ano.to_csv('./src/data/total_por_ano.csv', index=False)
+df_volume_por_ano.to_csv('./src/data/volume_por_ano.csv', index=False)

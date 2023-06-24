@@ -16,8 +16,10 @@ from PIL import Image
 
 #Lendo a base de dados e tratanto a base de dados
 df_resultado = pd.read_csv('./src/data/resultado.csv')
-df = pd.read_csv('./src/data/ExpVinho.csv', sep=";")
+df_total_por_ano = pd.read_csv('./src/data/total_por_ano.csv')
+df_volume_por_ano = pd.read_csv('./src/data/volume_por_ano.csv')
 df_total = pd.read_csv('./src/data/total_final.csv')
+
 
 
 #Titulo de Página
@@ -88,8 +90,72 @@ with tab1:
     line = px.line(df_resultado, x='anos', y='total').update_traces(mode='lines')    
     scatter = px.scatter(df_resultado, x='anos', y='total').update_traces(mode='markers', hovertemplate='Ano: %{x} <br>Valor: U$ %{y}')    
     fig = go.Figure(data=line.data + scatter.data)    
-    fig.update_xaxes(tickangle=45)
+    fig.update_layout(
+        xaxis_title="Anos",
+        yaxis_title="Valor Médio (em U$)",
+        xaxis = dict(
+            tickangle=45
+        )
+    )
+
     st.plotly_chart(fig)
+    
+    st.markdown('''
+
+    ## Relatório de Vendas dos Últimos 15 Anos
+    É com grande satisfação que apresentamos a evolução do faturamento total de vendas da nossa empresa ao longo dos últimos quinze anos. Como verão no gráfico a seguir, nossos esforços e investimentos contínuos nos posicionaram para um crescimento sustentável, culminando em uma receita expressiva em 2021.
+
+    No gráfico, é importante notar o pico significativo de vendas em 2013. Isso se deve ao marco histórico em nossa história de negócios - a primeira exportação de vinho a granel para a Rússia, um empreendimento liderado pela Associação dos Vinicultores de Garibaldi (AVIGA), da qual fazemos parte. Este feito não só elevou o nosso perfil no mercado internacional de vinhos, mas também abriu portas para novas oportunidades de negócios.
+
+    Naquele ano, juntamente com outras empresas associadas à AVIGA, exportamos um total de 840 mil litros de vinho tinto de mesa para o mercado russo, equivalente a 35 contêineres. Este acontecimento histórico foi o resultado de anos de trabalho árduo, qualidade do produto e articulação estratégica.
+
+    Esta iniciativa pioneira de exportação para a Rússia é um testemunho do nosso compromisso com a inovação e a busca de novos mercados. É também um exemplo de como a colaboração e a parceria podem gerar resultados expressivos.
+
+    Aproveitamos também para destacar o nosso desempenho recente em 2021, onde atingimos quase U$ 10 milhões em vendas. Este crescimento robusto reflete a força contínua da nossa marca e a qualidade dos nossos vinhos, além do sucesso das nossas estratégias de mercado.
+
+    Para o futuro, continuaremos a buscar novas oportunidades e a melhorar nossos produtos e serviços. Agradecemos a todos pelo seu apoio contínuo e confiança em nossa empresa.
+    ''')
+
+    
+
+    line2 = px.line(df_total_por_ano, x='Anos', y='Total').update_traces(mode='lines')    
+    scatter2 = px.scatter(df_total_por_ano, x='Anos', y='Total').update_traces(mode='markers', hovertemplate='Ano: %{x} <br>Valor: U$ %{y:,.2f}')    
+    fig2 = go.Figure(data=line2.data + scatter2.data)    
+    fig2.update_layout(
+        xaxis_title="Anos",
+        yaxis_title="Faturamento (em U$)",
+        xaxis = dict(
+            tickangle=45
+        )
+    )
+    st.plotly_chart(fig2)
+
+
+    st.markdown('''
+    ## Relatório de Volumetria dos Últimos 15 Anos
+
+    É com grande satisfação que apresentamos o relatório de vendas dos últimos 15 anos. As informações aqui fornecidas oferecem uma visão clara da evolução das nossas vendas, destacando os pontos altos e baixos deste período.
+
+    Observe, a partir dos dados plotados, que nossas vendas passaram por períodos de pico, como em 2009, onde alcançamos a incrível marca de mais de 25 milhões, seguido por uma desaceleração nos anos seguintes. Contudo, a resiliência e capacidade de adaptação do nosso negócio permitiram uma recuperação consistente ao longo dos anos. 
+
+    A tendência de crescimento que observamos desde 2016, culminando em mais de 8 milhões em vendas em 2021, reforça a força da nossa empresa no mercado. Esses resultados são reflexo do nosso comprometimento com a qualidade e inovação constante dos nossos produtos e serviços.
+
+    Estamos animados com o futuro e confiantes de que continuaremos a ver essa tendência ascendente nos próximos anos. Agradecemos seu apoio contínuo e confiança em nossa empresa.
+
+    Agora, apresentamos a vocês o gráfico de nossas vendas ao longo desses 15 anos para um olhar mais detalhado sobre a evolução do nosso desempenho.
+    ''')
+
+    line3 = px.line(df_volume_por_ano, x='Anos', y='Total').update_traces(mode='lines')    
+    scatter3 = px.scatter(df_volume_por_ano, x='Anos', y='Total').update_traces(mode='markers', hovertemplate='Ano: %{x} <br>Volume %{y}')    
+    fig3 = go.Figure(data=line3.data + scatter3.data)    
+    fig3.update_layout(
+        xaxis_title="Anos",
+        yaxis_title="Volumetria",
+        xaxis = dict(
+            tickangle=45
+        )
+    )
+    st.plotly_chart(fig3)
 
 with tab2:
 
