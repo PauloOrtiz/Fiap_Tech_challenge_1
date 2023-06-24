@@ -46,11 +46,11 @@ df_valor_total = df_valor[['Total']]
 df_valor_total = df_valor_total.rename(columns={'Total':'Valor (US$)'})
 df_valor_total['Valor (US$)'] = df_valor_total['Valor (US$)'].apply(lambda x: '{:,.2f}'.format(x))
 df_volume_total = df_volume[['Total']]
-df_volume_total = df_volume_total.rename(columns={'Total':'Volume'})
+df_volume_total = df_volume_total.rename(columns={'Total':'Volume KG'})
 
 df_total_final = df_valor_total.merge(df_volume_total,how='left',on='País')
 df_total_final['Origem'] = 'Brasil'
-df_total_final = df_total_final[['Origem', 'Volume', 'Valor (US$)']]
+df_total_final = df_total_final[['Origem', 'Volume KG', 'Valor (US$)']]
 
 
 
