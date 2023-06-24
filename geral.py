@@ -3,8 +3,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import streamlit as st
-import matplotlib.pyplot as plt
-from matplotlib.ticker import PercentFormatter
+
 
 
 #Lendo a base de dados e tratanto a base de dados
@@ -13,6 +12,7 @@ df_total_por_ano = pd.read_csv('./src/data/total_por_ano.csv')
 df_volume_por_ano = pd.read_csv('./src/data/volume_por_ano.csv')
 df_total = pd.read_csv('./src/data/total_final.csv')
 df_porpo = pd.read_csv('./src/data/porpo.csv')
+
 
 def run():
     # Layout do aplicativo
@@ -155,3 +155,25 @@ def run():
 
         # Exibir gráfico
         st.plotly_chart(fig)
+
+        st.title("Análise de Exportações")
+
+        st.write("""
+        ## Dados
+        Aqui estão os dados utilizados para esta análise.
+        """)
+        st.dataframe(df_porpo)
+
+        st.write("""
+        ## Gráfico
+        Este gráfico mostra a participação nas exportações por país nos últimos 15 anos.
+        """)
+        st.plotly_chart(create_charts(df_porpo))
+
+        st.write("""
+        ## Análise
+        1. **Países dominantes:** Paraguai e Rússia são claramente os países dominantes em termos de exportações, representando uma grande parte das exportações totais. Isto é um ponto positivo, pois mostra que temos fortes relações comerciais com esses países. No entanto, também indica uma dependência significativa desses mercados.
+
+        2. **Mercado dos Estados Unidos:** Apesar de não estar no topo da lista, o mercado dos Estados Unidos não deve ser subestimado. Com uma economia robusta e um alto poder de compra, é um parceiro comercial importante para continuar a envolver e potencialmente expandir nossos negócios.
+
+        3. **Diversificação de Mercado:** O grupo 'Others' representa 95% do percentual acumulado, indicando que a empresa está ativamente envolvida em muitos mercados diferentes ao redor do mundo. A diversificação é uma estratégia-chave para mitigar riscos.

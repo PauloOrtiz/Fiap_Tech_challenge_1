@@ -5,18 +5,20 @@ from PIL import Image
 #pages
 from home import run as run_home
 from geral import run as run_geral
+from sobre import run as run_sobre
 
 #Titulo de Página
 image = Image.open("./src/img/download.jpg")
 st.image(image)
 st.title("Análise da Exportação de Vinhos Brasileiros")
 
+# Sidebar com opções de seleção da página
+st.sidebar.title('Menu')
+page = st.sidebar.radio("Escolha uma Página", ["Home", "Geral", "Sobre"])
 
-# Defina variáveis para cada botão
-button1 = st.sidebar.button('Inicio')
-button2 = st.sidebar.button('Informações Gerais')
-
-if button1:
+if page == "Home":
     run_home()
-elif button2:
+elif page == "Geral":
     run_geral()
+elif page == "Sobre":
+    run_sobre()
