@@ -9,7 +9,7 @@ df=df.set_index(['País'])
 df.drop(columns='Id', inplace=True)
 
 
-#removendo o Brasil dos dados
+#removendo do Brasil dos dados
 df.drop('Brasil', inplace=True)
 
 
@@ -27,7 +27,7 @@ df_volume = df[columns_qtd]
 
 #Adicionando a coluna e linha de Totais no dataframe de valores e volumes:
 
-df_valor['Total.1'] = df_valor.sum(axis=1)
+df_valor['Total'] = df_valor.sum(axis=1)
 df_valor.loc['total']= df_valor.sum() 
 df_volume['Total'] = df_volume.sum(axis=1)
 df_volume.loc['total']= df_volume.sum() 
