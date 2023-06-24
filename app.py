@@ -16,6 +16,7 @@ from PIL import Image
 #Lendo a base de dados e tratanto a base de dados
 df_resultado = pd.read_csv('./src/data/resultado.csv')
 df = pd.read_csv('./src/data/ExpVinho.csv', sep=";")
+df_total = pd.read_csv('./src/data/total_final.csv')
 
 
 #Titulo de Página
@@ -48,29 +49,7 @@ with tab0:
 with tab1:
     
 
-    # Removendo a coluna 'Id'
-    df.drop('Id', axis=1, inplace=True)
-
-    # Tratando o dataset
-    anos = list(range(1970, 2022))
-    dados = []
-    for ano in anos:
-        df_ano = df.copy()
-        df_ano['Ano'] = ano
-        df_ano['Quantidade'] = df[str(ano)].astype(float)  # convertendo kg em litros (considerando 1kg=1L)
-        df_ano['Valor'] = df[str(ano)].astype(float)
-        dados.append(df_ano[['País', 'Ano', 'Quantidade', 'Valor']])
-
-    df_final = pd.concat(dados)
-
-    # Adicionando a coluna 'Origem'
-    df_final['Origem'] = 'Brasil'
-
-    # Reordenando as colunas
-    df_final = df_final[['Origem', 'País', 'Ano', 'Quantidade', 'Valor']]
-
-    
-    st.dataframe(df_final)  # Mostra o dataframe no Streamlit
+    st.dataframe(df_total,hide_index=True,use_container_width=True)  # Mostra o dataframe no Streamlit
 
 
 with tab2:
