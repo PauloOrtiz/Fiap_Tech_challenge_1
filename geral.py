@@ -124,6 +124,13 @@ def run():
        st.plotly_chart(fig3) 
     
     with tab4:
+
+        st.write('''
+        ## Introdução
+
+        Este relatório apresenta uma análise de nossas exportações nos últimos 15 anos, especificamente, destacando a participação percentual acumulada de cada país em nossas exportações. Nossa análise é baseada em dados que foram agregados e apresentados em uma visualização gráfica, combinando um gráfico de barras que mostra o valor total das exportações para cada país e uma linha de percentual acumulado que indica a contribuição progressiva para o total de exportações.
+        
+        ''')
         
         color1 = 'steelblue'
         color2 = 'red'
@@ -156,24 +163,39 @@ def run():
         # Exibir gráfico
         st.plotly_chart(fig)
 
-        st.title("Análise de Exportações")
-
         st.write("""
-        ## Dados
-        Aqui estão os dados utilizados para esta análise.
-        """)
-        st.dataframe(df_porpo)
+        
+        ## Análise dos Dados
 
-        st.write("""
-        ## Gráfico
-        Este gráfico mostra a participação nas exportações por país nos últimos 15 anos.
-        """)
-        st.plotly_chart(create_charts(df_porpo))
+        O gráfico demonstra claramente que nossas exportações são altamente concentradas em poucos países.
 
+        Os primeiros países na lista - Paraguai, Rússia, Estados Unidos, Reino Unido e China - representam a maior parte do valor total das nossas exportações. Especificamente, o Paraguai e a Rússia sozinhos representam mais de 77% do valor total das nossas exportações. Esta concentração em um pequeno número de mercados apresenta riscos e oportunidades.
+
+        Por um lado, a dependência de poucos mercados pode nos tornar vulneráveis a mudanças econômicas ou políticas nesses países. Por exemplo, uma recessão ou mudança de política comercial no Paraguai ou na Rússia poderia ter um impacto significativo em nossas exportações.
+
+        Por outro lado, a concentração de nossas exportações nesses mercados também pode representar uma oportunidade. Há claramente uma demanda forte e estabelecida por nossos produtos nesses países, o que sugere que podemos ter oportunidades para expandir ainda mais nossa participação de mercado. Além disso, nossa experiência e relacionamento nestes mercados podem nos fornecer uma vantagem competitiva.
+
+        Os dados também mostram que, após o primeiro grupo de países, o valor das nossas exportações cai drasticamente. Muitos países têm um valor de exportação muito pequeno e estão agrupados na categoria 'Others'. Isso sugere que temos um grande número de mercados nos quais nossa presença é relativamente pequena.
+
+        """) 
+                        
         st.write("""
         ## Análise
-        1. **Países dominantes:** Paraguai e Rússia são claramente os países dominantes em termos de exportações, representando uma grande parte das exportações totais. Isto é um ponto positivo, pois mostra que temos fortes relações comerciais com esses países. No entanto, também indica uma dependência significativa desses mercados.
 
-        2. **Mercado dos Estados Unidos:** Apesar de não estar no topo da lista, o mercado dos Estados Unidos não deve ser subestimado. Com uma economia robusta e um alto poder de compra, é um parceiro comercial importante para continuar a envolver e potencialmente expandir nossos negócios.
+        # Recomendações
 
-        3. **Diversificação de Mercado:** O grupo 'Others' representa 95% do percentual acumulado, indicando que a empresa está ativamente envolvida em muitos mercados diferentes ao redor do mundo. A diversificação é uma estratégia-chave para mitigar riscos.
+        Com base na análise dos dados, eu recomendaria as seguintes ações estratégicas:
+
+        # Mitigar Riscos: 
+        
+        Devemos buscar maneiras de mitigar o risco associado à nossa dependência das exportações para o Paraguai e a Rússia. Isso pode incluir a diversificação de nossos mercados de exportação, desenvolvendo relações comerciais com um maior número de países.
+
+        # Explorar Oportunidades: 
+        
+        Também devemos explorar oportunidades de expandir ainda mais nossas vendas nos mercados onde já temos uma presença forte. Isso pode incluir a identificação de novas oportunidades de negócios, a expansão de nossas ofertas de produtos ou a formação de parcerias estratégicas.
+
+        # Desenvolver mercados emergentes: 
+        
+        Finalmente, devemos olhar para a longa lista de países em 'Others' como mercados emergentes potenciais. Embora o valor das exportações para cada um desses países possa ser pequeno no momento, eles podem representar oportunidades significativas de crescimento a longo prazo.
+
+        """)
