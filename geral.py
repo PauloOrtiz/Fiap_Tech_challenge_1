@@ -3,6 +3,8 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import streamlit as st
+import matplotlib.pyplot as plt
+from matplotlib.ticker import PercentFormatter
 
 
 #Lendo a base de dados e tratanto a base de dados
@@ -10,10 +12,11 @@ df_resultado = pd.read_csv('./src/data/resultado.csv')
 df_total_por_ano = pd.read_csv('./src/data/total_por_ano.csv')
 df_volume_por_ano = pd.read_csv('./src/data/volume_por_ano.csv')
 df_total = pd.read_csv('./src/data/total_final.csv')
+df_porpo = pd.read_csv('./src/data/porpo.csv')
 
 def run():
     # Layout do aplicativo
-    tab0, tab1, tab2, tab3= st.tabs(["Dados Gerais", "Preço Médio", "Faturamento","Volumetria"])
+    tab0, tab1, tab2, tab3, tab4= st.tabs(["Dados Gerais", "Preço Médio", "Faturamento","Volumetria","Percentual"])
 
     with tab0:
         st.write("""
@@ -119,3 +122,36 @@ def run():
             )
         )
        st.plotly_chart(fig3) 
+    
+    with tab4:
+        
+        color1 = 'steelblue'
+        color2 = 'red'
+        line_size = 4
+
+        # Criar gráfico de barras
+        bar = go.Bar(x=df_porpo['group'], 
+                    y=df_porpo['Total'], 
+                    marker_color=['grey' if x < 83 else 'orange' for x in df_porpo['perc_acum']],
+                    name='Valor em Milhões')
+
+        # Criar gráfico de linha
+        line = go.Scatter(x=df_porpo['group'], 
+                        y=df_porpo['perc_acum'], 
+                        mode='lines+markers',
+                        marker=dict(color=color2, size=line_size),
+                        yaxis='y2',
+                        name='Percentual Acumulado')
+
+        # Criar layout com dois eixos y
+        layout = go.Layout(title="Analise de participação nas exportações por país (ultimos 15 anos)", 
+                        xaxis=dict(title='País exportação'),
+                        yaxis=dict(title='Valor em Milhões', color=color1),
+                        yaxis2=dict(title='Percentual', overlaying='y', side='right', color=color2, tickformat=".0%"),
+                        showlegend=True)
+
+        # Criar figura e adicionar ambos os gráficos
+        fig = go.Figure(data=[bar, line], layout=layout)
+
+        # Exibir gráfico
+        st.plotly_chart(fig)

@@ -1,5 +1,7 @@
 #Libs
 import pandas as pd
+import numpy as np
+
 
 #importação dos dados
 df = pd.read_csv("./src/data/ExpVinho.csv", sep=";")
@@ -75,6 +77,20 @@ volume_por_ano = df_volume_2.sum()
 df_volume_por_ano = volume_por_ano.reset_index()
 df_volume_por_ano.columns = ['Anos', 'Total']
 
+
+#Criação data set de porpoção
+
+
+dt=(df_valor["Total"].groupby(by=df_valor.index, sort=True ).sum())/1000000
+dt= dt.sort_values(ascending=False)
+dt2 = pd.DataFrame(dt)
+
+dt2['perc_acum'] = dt2['Total'].cumsum()/dt2['Total'].sum()*100
+dt2=dt2.reset_index()
+dt2['group'] = np.where(dt2['perc_acum']>=95, 'Others', dt2['País'])
+dt2['perc_acum'] = np.where(dt2['perc_acum']>=95, 95,dt2['perc_acum'] )
+dt2 = dt2.iloc[1:]
+
 #exportanto os dataframes tratados:
 
 df_valor.to_csv('./src/data/valores.csv', index=True)
@@ -83,3 +99,4 @@ df_resultado.to_csv('./src/data/resultado.csv', index=False)
 df_total_final.to_csv('./src/data/total_final.csv', index=True)
 df_total_por_ano.to_csv('./src/data/total_por_ano.csv', index=False)
 df_volume_por_ano.to_csv('./src/data/volume_por_ano.csv', index=False)
+dt2.to_csv('./src/data/porpo.csv', index=False)
