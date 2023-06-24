@@ -31,6 +31,8 @@ df_valor.loc[:, 'Total'] = df_valor.sum(axis=1)
 df_valor.loc['total', :] = df_valor.sum()
 df_volume.loc[:, 'Total'] = df_volume.sum(axis=1)
 df_volume.loc['total', :]= df_volume.sum() 
+df_volume = df_volume[df_volume['Total'] != 0]
+df_valor = df_valor[df_valor['Total'] != 0]
 
 
 #criando um dataframe que traz a media preço por litro vendido por ano.
@@ -39,19 +41,25 @@ linha1 = df_valor.loc['total']
 linha2 = df_volume.loc['total']
 resultado = linha1/linha2
 df_resultado = pd.DataFrame(resultado)
-df_resultado = df_resultado.T
+#df_resultado = df_resultado.T
+df_resultado = df_resultado.reset_index()
+df_resultado = df_resultado.rename(columns={'index':'anos'})
+df_resultado = df_resultado.round(2)
+
+print(df_resultado)
 
 #criando um dataframe dos volume e valores de vendas dos ultimos 15 anos
 df_valor_total = df_valor[['Total']]
 df_valor_total = df_valor_total.rename(columns={'Total':'Valor (US$)'})
-df_valor_total['Valor (US$)'] = df_valor_total['Valor (US$)'].apply(lambda x: '{:,.2f}'.format(x))
+df_valor_total['Valor (US$)'] = df_valor_total['Valor (US$)'].astype('int64')
+
 df_volume_total = df_volume[['Total']]
 df_volume_total = df_volume_total.rename(columns={'Total':'Volume KG'})
 
 df_total_final = df_valor_total.merge(df_volume_total,how='left',on='País')
 df_total_final['Origem'] = 'Brasil'
 df_total_final = df_total_final[['Origem', 'Volume KG', 'Valor (US$)']]
-
+df_total_final = df_total_final.iloc[:-1]
 
 
 
