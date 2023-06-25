@@ -139,31 +139,25 @@ with tab4:
     color2 = 'red'
     line_size = 4
 
-    # Criar gráfico de barras
+    df_porpo['perc_acum'] = df_porpo['perc_acum'] / 100
     bar = go.Bar(x=df_porpo['group'], 
                 y=df_porpo['Total'], 
-                marker_color=['grey' if x < 83 else 'orange' for x in df_porpo['perc_acum']],
+                marker_color=['grey' if x < 0.83 else 'orange' for x in df_porpo['perc_acum']],
                 name='Valor em Milhões')
-
-    # Criar gráfico de linha
     line = go.Scatter(x=df_porpo['group'], 
                     y=df_porpo['perc_acum'], 
                     mode='lines+markers',
                     marker=dict(color=color2, size=line_size),
                     yaxis='y2',
                     name='Percentual Acumulado')
-
-    # Criar layout com dois eixos y
     layout = go.Layout(title="Analise de participação nas exportações por país (ultimos 15 anos)", 
-                    xaxis=dict(title='País exportação'),
+                    xaxis=dict(title='País exportação',tickangle=45),
                     yaxis=dict(title='Valor em Milhões', color=color1),
                     yaxis2=dict(title='Percentual', overlaying='y', side='right', color=color2, tickformat=".0%"),
+                    legend=dict(x=1.2, y=1),  # mover a legenda para o lado direito
                     showlegend=True)
-
-    # Criar figura e adicionar ambos os gráficos
     fig = go.Figure(data=[bar, line], layout=layout)
 
-    # Exibir gráfico
     st.plotly_chart(fig)
 
     st.write("""
