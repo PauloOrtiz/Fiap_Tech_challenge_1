@@ -6,7 +6,7 @@ import streamlit as st
 from PIL import Image
 
 
-st.set_page_config(page_title="Analise Geral")
+st.set_page_config(page_title="Analise Geral", page_icon="📈")
 
 #Lendo a base de dados e tratanto a base de dados
 df_resultado = pd.read_csv('./src/data/resultado.csv')
