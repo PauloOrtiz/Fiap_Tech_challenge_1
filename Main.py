@@ -2,7 +2,7 @@
 import streamlit as st
 from PIL import Image
 
-st.set_page_config(page_title="Main Page", page_icon=":Home:")
+st.set_page_config(page_title="Main Page", page_icon=":house:")
 
 #Titulo de Página
 image = Image.open("./src/img/download.jpg")
