@@ -4,6 +4,8 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
+
+
 st.set_page_config(page_title="Analise Geral")
 
 #Lendo a base de dados e tratanto a base de dados
@@ -13,13 +15,13 @@ df_volume_por_ano = pd.read_csv('./src/data/volume_por_ano.csv')
 df_total = pd.read_csv('./src/data/total_final.csv')
 df_porpo = pd.read_csv('./src/data/porpo.csv')
 
+image = Image.open("./src/img/download.jpg")
+st.image(image)
 
 
 # Layout do aplicativo
 tab0, tab1, tab2, tab3, tab4= st.tabs(["Dados Gerais", "Preço Médio", "Faturamento","Volumetria","Percentual"])
 
-image = Image.open("./src/img/download.jpg")
-st.image(image)
 
 
 with tab0:
