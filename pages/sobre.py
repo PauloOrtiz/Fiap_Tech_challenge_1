@@ -16,7 +16,7 @@ Luiz Antonio Simette de Mello Campos
 
 Leonardo Fernandes de Moraes Alves
 
-Paulo Henrique Barbosa Ortiz
+Paulo Henrique Barbosa Ortiz de Souza
 
 
 
