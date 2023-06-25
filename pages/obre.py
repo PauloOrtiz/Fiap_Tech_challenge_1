@@ -12,9 +12,9 @@ st.write(
 
 ### Participantes:
 
-Luiz Antonio Simette de Mello Campos
-
 Leonardo Fernandes de Moraes Alves
+
+Luiz Antonio Simette de Mello Campos
 
 Paulo Henrique Barbosa Ortiz de Souza
 
