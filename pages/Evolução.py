@@ -5,6 +5,7 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Evolução", page_icon="📊")
 
@@ -22,12 +23,11 @@ tab0, tab1, tab2= st.tabs(["Preço Médio", "Faturamento","Volumetria"])
 
 
 with tab0:
-    st.write(
-    """
     
-    ## Análise do Valor Médio de Venda por Litro de Vinho ao longo de 15 Anos
-
-    Os resultados obtidos ao longo dos últimos 15 anos na venda de nosso vinho. Nesse período, observamos uma notável dinâmica no valor médio de venda por litro, o que demonstra o esforço contínuo em melhorar a qualidade de nossos produtos e a adaptação às demandas de mercado.
+    components.html("""<div style="font-size: 40px;">Análise do Valor Médio de Venda por Litro de <spam style="color: #8A2BE2;">Vinho</div>.</spam>""")
+    
+    st.markdown(
+    """Os resultados obtidos ao longo dos últimos 15 anos na venda de nosso vinho. Nesse período, observamos uma notável dinâmica no valor médio de venda por litro, o que demonstra o esforço contínuo em melhorar a qualidade de nossos produtos e a adaptação às demandas de mercado.
 
     No gráfico abaixo, você verá a evolução do valor médio de venda por litro de vinho de 2007 a 2021. Os dados representam uma média anual, o que proporciona uma visão clara das tendências ao longo do tempo. 
 
