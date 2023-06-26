@@ -14,13 +14,15 @@ df_total_por_ano = pd.read_csv('./src/data/total_por_ano.csv')
 df_volume_por_ano = pd.read_csv('./src/data/volume_por_ano.csv')
 df_total = pd.read_csv('./src/data/total_final.csv')    
 df_porpo = pd.read_csv('./src/data/porpo.csv')
+df_valores = pd.read_csv('./src/data/valores.csv')
+df_volume = pd.read_csv('./src/data/volume.csv')
 
 image = Image.open("./src/img/download.jpg")
 st.image(image)
 
 
 # Layout do aplicativo
-tab0, tab1, tab2, tab3, tab4= st.tabs(["Dados Gerais", "Preço Médio", "Faturamento","Volumetria","Percentual"])
+tab0, tab1, tab2, tab3, tab4, tab5= st.tabs(["Dados Gerais", "Preço Médio", "Faturamento","Volumetria","Percentual","Paises"])
 
 
 
@@ -36,12 +38,52 @@ with tab0:
 
     Vamos explorar juntos essas informações valiosas e discutir como elas podem ser utilizadas para potencializar nosso crescimento e rentabilidade futura.
     """)
+    # Definindo o widget no sidebar
+    anos_selecionados = st.sidebar.multiselect('Selecione os anos', df_total_por_ano['Anos'].unique(), default=df_total_por_ano['Anos'].unique())
+
+    # Filtrando os dados baseado nos anos selecionados
+    df_filtrado_total = df_total_por_ano[df_total_por_ano['Anos'].isin(anos_selecionados)]
+    df_filtrado_volume = df_volume_por_ano[df_volume_por_ano['Anos'].isin(anos_selecionados)]
+    df_filtrado_medio = df_resultado[df_resultado['Anos'].isin(anos_selecionados)]  # corrigido aqui
+
+    # Criação das 3 colunas
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown(f"""
+                    <div style="border:2px solid black; padding:10px;text-align: center;">
+                        <h2>Faturamento</h2>
+                        <p>U$ {df_filtrado_total['Total'].sum():,.2f}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+        
+    with col2:
+        st.markdown(f"""
+                    <div style="border:2px solid black; padding:10px;text-align: center;">
+                        <h2>Volume</h2>
+                        <p>{df_filtrado_volume['Total'].sum():,.0f}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+    with col3:
+        st.markdown(f"""
+                    <div style="border:2px solid black; padding:10px; text-align: center;">
+                        <h2>Preço Médio</h2>
+                        <p>U$ {df_filtrado_medio['Total'].sum():,.2f}</p>
+                    </div>""", unsafe_allow_html=True)
+        
+    st.markdown("""
     
+
+    
+    """)
+
     st.dataframe(df_total,hide_index=True,use_container_width=True) 
     
 with tab1:
     st.write(
     """
+    
     ## Análise do Valor Médio de Venda por Litro de Vinho ao longo de 15 Anos
 
     Os resultados obtidos ao longo dos últimos 15 anos na venda de nosso vinho. Nesse período, observamos uma notável dinâmica no valor médio de venda por litro, o que demonstra o esforço contínuo em melhorar a qualidade de nossos produtos e a adaptação às demandas de mercado.
@@ -55,8 +97,8 @@ with tab1:
     Para quaisquer dúvidas ou esclarecimentos adicionais, não hesitem em nos contactar.
     """
     )
-    line = px.line(df_resultado, x='anos', y='total').update_traces(mode='lines')    
-    scatter = px.scatter(df_resultado, x='anos', y='total').update_traces(mode='markers', hovertemplate='Ano: %{x} <br>Valor: U$ %{y}')    
+    line = px.line(df_resultado, x='Anos', y='Total').update_traces(mode='lines')    
+    scatter = px.scatter(df_resultado, x='Anos', y='Total').update_traces(mode='markers', hovertemplate='Ano: %{x} <br>Valor: U$ %{y}')    
     fig = go.Figure(data=line.data + scatter.data)    
     fig.update_layout(
         xaxis_title="Anos",
@@ -195,4 +237,50 @@ with tab4:
     
     Finalmente, devemos olhar para a longa lista de países em 'Others' como mercados emergentes potenciais. Embora o valor das exportações para cada um desses países possa ser pequeno no momento, eles podem representar oportunidades significativas de crescimento a longo prazo.
 
+    """)
+
+with tab5:
+
+    st.title('Análise de Faturamento e Volume por País')
+
+    st.write("""
+    Este relatório mostra a evolução do faturamento e volume de vendas de produtos por país, a partir de dados coletados entre os anos de 2007 e 2021.
+    """)
+
+    def filtro_paises(df, paises):
+        df_melt = df.melt(id_vars=['País'], value_vars=df.columns[1:-1], var_name='Ano', value_name='Valor')
+        df_filtered = df_melt[df_melt['País'].isin(paises)]
+        return df_filtered
+
+    # Cria a lista de países com base no primeiro DataFrame, que supomos conter todos os países
+    todos_paises = df_valores['País'].unique()
+    filtrar_paises = st.sidebar.checkbox('Filtrar países', value=False, key='chave1')
+
+    if filtrar_paises:
+        paises_selecionados = st.sidebar.multiselect('Selecione os países:', todos_paises, default=todos_paises, key='chave2')
+    else:
+        paises_selecionados = todos_paises
+
+    # Gráfico de Países para Valores
+    df_valores = df_valores.iloc[:-1]
+    df_filtered = filtro_paises(df_valores, paises_selecionados)
+    fig = px.line(df_filtered, x='Ano', y='Valor', color='País')
+    st.plotly_chart(fig)
+
+    # Gráfico de Países para Volume
+    df_volume = df_volume.iloc[:-1]
+    df_filtered = filtro_paises(df_volume, paises_selecionados)
+    fig = px.line(df_filtered, x='Ano', y='Valor', color='País')
+    st.plotly_chart(fig)
+
+    st.write("""
+    ## Análise
+
+    Ao examinar o conjunto de dados, é possível ver que a atividade econômica varia muito de país para país e de ano para ano. Alguns países, como a Alemanha, República Democrática, por exemplo, mostram uma atividade econômica significativa, com um total de faturamento/volume de mais de 2.7 milhões no período analisado. Outros países, como Afeganistão e África do Sul, mostram um volume de negócios muito menor.
+
+    Vale destacar também que alguns países tiveram um aumento substancial em seu volume de negócios em anos específicos. A China, por exemplo, teve um grande salto em 2009, e essa tendência continuou nos anos subsequentes.
+
+    Essas observações ressaltam a utilidade de poder selecionar países e anos específicos no gráfico interativo. Isso permite que os usuários identifiquem tendências e padrões que podem não ser imediatamente óbvios ao examinar o conjunto de dados como um todo.
+
+    Por último, vale ressaltar que o conjunto de dados abrange um período de tempo significativo, e portanto as tendências observadas podem refletir mudanças nas circunstâncias econômicas globais, regionais ou nacionais. Isso sublinha a importância de interpretar os dados à luz do contexto mais amplo.    
     """)

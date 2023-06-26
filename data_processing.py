@@ -45,8 +45,9 @@ resultado = linha1/linha2
 df_resultado = pd.DataFrame(resultado)
 #df_resultado = df_resultado.T
 df_resultado = df_resultado.reset_index()
-df_resultado = df_resultado.rename(columns={'index':'anos'})
+df_resultado = df_resultado.rename(columns={'index':'Anos', 'total':'Total'})
 df_resultado = df_resultado.round(2)
+df_resultado = df_resultado.iloc[:-1]
 
 #criando um dataframe dos volume e valores de vendas dos ultimos 15 anos
 df_valor_total = df_valor[['Total']]
