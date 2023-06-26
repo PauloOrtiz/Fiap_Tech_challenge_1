@@ -5,6 +5,7 @@ from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
 
+st.set_page_config(page_title="Evolução", page_icon="🌎")
 
 df_porpo = pd.read_csv('./src/data/porpo.csv')
 df_valores = pd.read_csv('./src/data/valores.csv')

@@ -6,7 +6,7 @@ from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
 
-st.set_page_config(page_title="Evolução", page_icon="📈")
+st.set_page_config(page_title="Evolução", page_icon="📊")
 
 
 df_resultado = pd.read_csv('./src/data/resultado.csv')

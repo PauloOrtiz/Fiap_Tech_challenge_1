@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 
-st.set_page_config(page_title="Sobre")
+st.set_page_config(page_title="Sobre",page_icon=":information_source:")
 
 image = Image.open("./src/img/download.jpg")
 st.image(image)
