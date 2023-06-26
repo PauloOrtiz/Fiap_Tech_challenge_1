@@ -33,6 +33,6 @@ Base dados principal: http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_01
 
 Noticias: http://www.aviga.com.br/ 
 
-Dataset complementar: https://www.kaggle.com/search
+Dataset complementar: https://dadosabertos.bcb.gov.br/dataset/dolar-americano-usd-todos-os-boletins-diarios
 """
 )
