@@ -34,7 +34,7 @@ with tab0:
     Ressaltamos que a nossa unidade de medida considera 1 kg de uva igual a 1 litro de vinho. Essa é uma aproximação comum na indústria e permite uma fácil interpretação e comparação dos dados.
 
     Analise os dados e observe o compromisso da nossa equipe em buscar os melhores resultados e a valorização constante dos nossos produtos. 
-
+    
     Para quaisquer dúvidas ou esclarecimentos adicionais, não hesitem em nos contactar.
     """
     )
