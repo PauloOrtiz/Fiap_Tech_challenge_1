@@ -53,7 +53,7 @@ with tab0:
         st.markdown(f"""
                     <div style="border:2px solid black; padding:10px;text-align: center;">
                         <h2>Faturamento</h2>
-                        <p>U$ {df_filtrado_total['Total'].sum():,.2f}</p>
+                        <h4 style ="text-decoration: underline;">U$ {df_filtrado_total['Total'].sum():,.2f}</h4>
                     </div>
                     """, unsafe_allow_html=True)
         
@@ -61,7 +61,7 @@ with tab0:
         st.markdown(f"""
                     <div style="border:2px solid black; padding:10px;text-align: center;">
                         <h2>Volume</h2>
-                        <p>{df_filtrado_volume['Total'].sum():,.0f}</p>
+                        <h4 style ="text-decoration: underline;">{df_filtrado_volume['Total'].sum():,.0f}</h4>
                     </div>
                     """, unsafe_allow_html=True)
 
@@ -69,7 +69,7 @@ with tab0:
         st.markdown(f"""
                     <div style="border:2px solid black; padding:10px; text-align: center;">
                         <h2>Preço Médio</h2>
-                        <p>U$ {df_filtrado_medio['Total'].sum():,.2f}</p>
+                        <h4 style ="text-decoration: underline;">U$ {df_filtrado_medio['Total'].sum():,.2f}</h4>
                     </div>""", unsafe_allow_html=True)
         
     st.markdown("""
