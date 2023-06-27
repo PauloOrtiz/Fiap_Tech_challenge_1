@@ -17,17 +17,17 @@ st.markdown("""
 
 <p style="text-indent: 20px;"> 1. <b>Volumetria da Exportação por Ano:</b> Uma análise da quantidade de vinhos exportados por ano para diferentes países, abrangendo o período de 2007 a 2021.
 
-2. **Preço Médio de Venda na Exportação:** Uma análise do preço médio de venda de nossos vinhos no mercado internacional.
+<p style="text-indent: 20px;"> 2. <b>Preço Médio de Venda na Exportação:</b> Uma análise do preço médio de venda de nossos vinhos no mercado internacional.
 
-3. **Faturamento da Exportação por Ano:** Uma análise do faturamento anual de nossas exportações.
+<p style="text-indent: 20px;"> 3. <b>Faturamento da Exportação por Ano:</b> Uma análise do faturamento anual de nossas exportações.
 
-4. **Evolução do Dólar:** Uma visão sobre como a flutuação da moeda influenciou nossas exportações durante o período em questão.
+<p style="text-indent: 20px;"> 4. <b>Evolução do Dólar:</b> Uma visão sobre como a flutuação da moeda influenciou nossas exportações durante o período em questão.
 
-5. **Principais Destinos de Exportação:** Uma análise de Pareto que mostra os principais países para os quais exportamos nossos vinhos.
+<p style="text-indent: 20px;"> 5. <b>Principais Destinos de Exportação:</b> Uma análise de Pareto que mostra os principais países para os quais exportamos nossos vinhos.
 
-6. **Produção e Comercialização de Vinho:** Uma análise do volume de produção e comercialização de vinho no Brasil durante o período de 2007 a 2021.
+<p style="text-indent: 20px;"> 6. <b>Produção e Comercialização de Vinho:</b> Uma análise do volume de produção e comercialização de vinho no Brasil durante o período de 2007 a 2021.
 
-7. **Importação vs Exportação:** Uma análise comparativa entre os volumes de importação e exportação de vinho no Brasil.
+<p style="text-indent: 20px;"> 7. <b>Importação vs Exportação:</b> Uma análise comparativa entre os volumes de importação e exportação de vinho no Brasil.
 
 ## Nosso público-alvo
 
