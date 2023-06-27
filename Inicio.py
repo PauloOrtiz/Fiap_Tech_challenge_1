@@ -9,7 +9,7 @@ image = Image.open("./src/img/download.jpg")
 st.image(image)
 
 st.markdown("""
-# Análise das Exportações de Vinhos Brasileiros
+<h1 style = "text-align: center;">Análise das Exportações de Vinhos Brasileiros</h1>
 
 <p style="text-indent: 40px;">Bem-vindos à análise de exportação de vinhos brasileiros. O Brasil tem uma rica tradição na produção de vinhos finos e, ao longo dos anos, tem exportado seus produtos para todo o mundo. Esta plataforma foi projetada para fornecer uma visão abrangente do volume e valor de nossas exportações, assim como as forças externas que as influenciam.
 

@@ -1,114 +1,23 @@
-País,Total,perc_acum,group
-Paraguai,32.364257,65.35522826757601,Paraguai
-Rússia,25.559026,77.48171331331368,Rússia
-Estados Unidos,10.046712,82.24837785001523,Estados Unidos
-Reino Unido,4.717554,84.48662229772853,Reino Unido
-China,4.372268,86.56104573303305,China
-Países Baixos,4.119122,88.51536399753066,Países Baixos
-Espanha,3.808552,90.32233226282817,Espanha
-"Alemanha, República Democrática",2.739079,91.62188884736288,"Alemanha, República Democrática"
-Japão,2.612375,92.8613306935177,Japão
-Haiti,1.586194,93.6139007570498,Haiti
-Bélgica,1.392832,94.27473018064461,Bélgica
-Canadá,1.110471,94.80159337078439,Canadá
-Suíça,0.956117,95.0,Others
-Portugal,0.739088,95.0,Others
-França,0.706582,95.0,Others
-Angola,0.621181,95.0,Others
-Polônia,0.61108,95.0,Others
-Finlândia,0.537432,95.0,Others
-"Tcheca, República",0.536018,95.0,Others
-Austrália,0.45723,95.0,Others
-Hong Kong,0.415676,95.0,Others
-Dinamarca,0.386745,95.0,Others
-Luxemburgo,0.371165,95.0,Others
-Suécia,0.350827,95.0,Others
-Cuba,0.309724,95.0,Others
-Taiwan (FORMOSA),0.287987,95.0,Others
-Curaçao,0.253733,95.0,Others
-Bolívia,0.244657,95.0,Others
-Noruega,0.23218,95.0,Others
-Uruguai,0.222511,95.0,Others
-Argentina,0.218452,95.0,Others
-Nigéria,0.208177,95.0,Others
-Antilhas Holandesas,0.160864,95.0,Others
-Itália,0.155007,95.0,Others
-Estônia,0.144886,95.0,Others
-Chile,0.129939,95.0,Others
-Panamá,0.114154,95.0,Others
-Cingapura,0.108474,95.0,Others
-Irlanda,0.104717,95.0,Others
-Gana,0.090377,95.0,Others
-Venezuela,0.083847,95.0,Others
-Guine Equatorial,0.081903,95.0,Others
-Catar,0.081608,95.0,Others
-Nova Zelândia,0.075053,95.0,Others
-Colômbia,0.073949,95.0,Others
-Bahamas,0.070829,95.0,Others
-Libéria,0.063852,95.0,Others
-"Marshall, Ilhas",0.060422,95.0,Others
-Emirados Arabes Unidos,0.059378,95.0,Others
-México,0.059229,95.0,Others
-Peru,0.053789,95.0,Others
-Cabo Verde,0.050363,95.0,Others
-Suriname,0.047633,95.0,Others
-Quênia,0.045547,95.0,Others
-Guatemala,0.037839,95.0,Others
-Benin,0.037765,95.0,Others
-Malta,0.035162,95.0,Others
-Filipinas,0.030607,95.0,Others
-Serra Leoa,0.026722,95.0,Others
-Grécia,0.02383,95.0,Others
-"Coreia, Republica Sul",0.019872,95.0,Others
-"Eslovaca, Republica",0.016063,95.0,Others
-Singapura,0.014346,95.0,Others
-Guiana,0.014067,95.0,Others
-Chipre,0.013638,95.0,Others
-Vietnã,0.012736,95.0,Others
-Nova Caledônia,0.011924,95.0,Others
-Togo,0.009823,95.0,Others
-Camarões,0.007654,95.0,Others
-Equador,0.007412,95.0,Others
-Tailândia,0.007179,95.0,Others
-Antígua e Barbuda,0.005872,95.0,Others
-Áustria,0.00522,95.0,Others
-Hungria,0.004686,95.0,Others
-Trinidade Tobago,0.00432,95.0,Others
-Letônia,0.003723,95.0,Others
-Barein,0.003066,95.0,Others
-Gibraltar,0.002953,95.0,Others
-República Dominicana,0.002438,95.0,Others
-Aruba,0.002435,95.0,Others
-São Tomé e Príncipe,0.002357,95.0,Others
-Bulgária,0.001579,95.0,Others
-Barbados,0.001407,95.0,Others
-Turquia,0.001237,95.0,Others
-"Cayman, Ilhas",0.001004,95.0,Others
-Ilha de Man,0.000741,95.0,Others
-Namibia,0.000722,95.0,Others
-Dominica,0.000634,95.0,Others
-Honduras,0.00061,95.0,Others
-Congo,0.00057,95.0,Others
-India,0.000369,95.0,Others
-Irã,0.000322,95.0,Others
-Costa Rica,0.0002,95.0,Others
-Malásia,0.000143,95.0,Others
-Montenegro,0.000131,95.0,Others
-Croácia,0.000123,95.0,Others
-África do Sul,0.000116,95.0,Others
-El Salvador,0.0001,95.0,Others
-Guine Bissau,9e-05,95.0,Others
-Mauritânia,8.5e-05,95.0,Others
-Jordânia,5.2e-05,95.0,Others
-Bósnia-Herzegovina,5.2e-05,95.0,Others
-Bangladesh,4.9e-05,95.0,Others
-São Vicente e Granadinas,4.8e-05,95.0,Others
-Afeganistão,4.6e-05,95.0,Others
-Guiana Francesa,3.2e-05,95.0,Others
-Vanuatu,3.1e-05,95.0,Others
-Belice,2.9e-05,95.0,Others
-Comores,2.5e-05,95.0,Others
-Nicaragua,2.4e-05,95.0,Others
-Suazilândia,2.4e-05,95.0,Others
-Indonésia,6e-06,95.0,Others
-Tuvalu,4e-06,95.0,Others
+group,Total,perc_acum
+"Alemanha, República Democrática",2.74,83.27
+Angola,0.62,92.5
+Austrália,0.46,94.54
+Bélgica,1.39,88.57
+Canadá,1.11,89.63
+China,4.37,73.14
+Espanha,3.81,80.67
+Estados Unidos,10.05,64.51
+Finlândia,0.54,93.59
+França,0.71,91.91
+Haiti,1.59,87.25
+Hong Kong,0.42,94.94
+Japão,2.61,85.74
+Others,5.33,98.84
+Paraguai,32.36,30.71
+Países Baixos,4.12,77.05
+Polônia,0.61,93.08
+Portugal,0.74,91.24
+Reino Unido,4.72,68.99
+Rússia,25.56,54.97
+Suíça,0.96,90.54
+"Tcheca, República",0.54,94.11

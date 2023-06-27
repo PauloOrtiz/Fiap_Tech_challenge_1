@@ -13,8 +13,8 @@ image = Image.open("./src/img/download.jpg")
 st.image(image)
 
 
-st.write("""
-## Análise de Comércio
+st.markdown("""
+## Análise Geral
 
 Este relatório visa oferecer uma visão abrangente das nossas transações, ilustrando a origem dos nossos produtos, o volume negociado e o valor total para cada país com o qual fizemos negócios.
 
@@ -23,7 +23,7 @@ Este conjunto de dados nos permitirá entender melhor a dinâmica do nosso comé
 Vale ressaltar que, para fins desta análise, adotamos a equivalência de que 1 kg é igual a 1 litro. Isso é importante para padronizar nossas métricas e proporcionar uma comparação justa entre diferentes produtos e volumes.
 
 Vamos explorar juntos essas informações valiosas e discutir como elas podem ser utilizadas para potencializar nosso crescimento e rentabilidade futura.
-""")
+""", unsafe_allow_html=True)
 # Definindo o widget no sidebar
 anos_selecionados = st.sidebar.multiselect('Selecione os anos', df_total_por_ano['Anos'].unique(), default=df_total_por_ano['Anos'].unique())
 
@@ -55,7 +55,7 @@ with col3:
     st.markdown(f"""
                 <div style="border:2px solid black; padding:10px; text-align: center;">
                     <h2>Preço Médio</h2>
-                    <h4 style ="text-decoration: underline;">U$ {df_filtrado_medio['Total'].sum():,.2f}</h4>
+                    <h4 style ="text-decoration: underline;">U$ {df_filtrado_medio['Total'].mean():,.2f}</h4>
                 </div>""", unsafe_allow_html=True)
     
 st.markdown("""

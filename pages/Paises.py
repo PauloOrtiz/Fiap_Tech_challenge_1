@@ -30,27 +30,51 @@ with tab0:
     
     ''')
     
+    
+
+
     color1 = 'steelblue'
     color2 = 'red'
     line_size = 4
 
     df_porpo['perc_acum'] = df_porpo['perc_acum'] / 100
-    bar = go.Bar(x=df_porpo['group'], 
-                y=df_porpo['Total'], 
-                marker_color=['grey' if x < 0.83 else 'orange' for x in df_porpo['perc_acum']],
-                name='Valor em Milhões')
-    line = go.Scatter(x=df_porpo['group'], 
-                    y=df_porpo['perc_acum'], 
-                    mode='lines+markers',
-                    marker=dict(color=color2, size=line_size),
-                    yaxis='y2',
-                    name='Percentual Acumulado')
-    layout = go.Layout(title="Analise de participação nas exportações por país (ultimos 15 anos)", 
-                    xaxis=dict(title='País exportação',tickangle=45),
-                    yaxis=dict(title='Valor em Milhões', color=color1),
-                    yaxis2=dict(title='Percentual', overlaying='y', side='right', color=color2, tickformat=".0%"),
-                    legend=dict(x=1.2, y=1),  # mover a legenda para o lado direito
-                    showlegend=True)
+    df_porpo = df_porpo.sort_values('perc_acum', ascending=True)
+
+    bar = go.Bar(
+        x=df_porpo['group'],
+        y=df_porpo['Total'],
+        marker_color=['grey' if x <= 0.80 else 'orange' for x in df_porpo['perc_acum']],
+        name='Valor em Milhões'
+    )
+
+    line = go.Scatter(
+        x=df_porpo['group'],
+        y=df_porpo['perc_acum'],
+        mode='lines+markers',
+        marker=dict(color=color2, size=line_size),
+        yaxis='y2',
+        name='Percentual Acumulado'
+    )
+
+    # Adicione "Others" ao final dos rótulos do eixo x
+
+
+    layout = go.Layout(
+        title="Analise de participação nas exportações por país (ultimos 15 anos)",
+        xaxis=dict(
+            title='País exportação',
+            tickangle=45,
+            tickmode='array',  # definir o modo de exibição dos ticks como array
+            tickvals=df_porpo['group'],  # definir os valores dos ticks
+           # ticktext=custom_labels  # definir os rótulos personalizados dos ticks
+        ),
+        yaxis=dict(title='Valor em Milhões', color=color1),
+        yaxis2=dict(title='Percentual', overlaying='y', side='right', color=color2, tickformat=".0%"),
+        legend=dict(x=0, y=1.3),  # mover a legenda acima do título
+        margin=dict(t=130),  # aumentar o espaçamento entre o título e a legenda
+        showlegend=True
+    )
+
     fig = go.Figure(data=[bar, line], layout=layout)
 
     st.plotly_chart(fig)
@@ -61,7 +85,7 @@ with tab0:
 
     O gráfico demonstra claramente que nossas exportações são altamente concentradas em poucos países.
 
-    Os primeiros países na lista - Paraguai, Rússia, Estados Unidos, Reino Unido e China - representam a maior parte do valor total das nossas exportações. Especificamente, o Paraguai e a Rússia sozinhos representam mais de 77% do valor total das nossas exportações. Esta concentração em um pequeno número de mercados apresenta riscos e oportunidades.
+    Os primeiros países na lista - Paraguai, Rússia, Estados Unidos, Reino Unido , China e Países baixos - representam a maior parte do valor total das nossas exportações. Especificamente, o Paraguai e a Rússia sozinhos representam mais 55s% do valor total das nossas exportações. Esta concentração em um pequeno número de mercados apresenta riscos e oportunidades.
 
     Por um lado, a dependência de poucos mercados pode nos tornar vulneráveis a mudanças econômicas ou políticas nesses países. Por exemplo, uma recessão ou mudança de política comercial no Paraguai ou na Rússia poderia ter um impacto significativo em nossas exportações.
 
@@ -69,10 +93,10 @@ with tab0:
 
     Os dados também mostram que, após o primeiro grupo de países, o valor das nossas exportações cai drasticamente. Muitos países têm um valor de exportação muito pequeno e estão agrupados na categoria 'Others'. Isso sugere que temos um grande número de mercados nos quais nossa presença é relativamente pequena.
 
+
     """) 
                     
     st.write("""
-    ## Análise
 
     ### Recomendações
 
