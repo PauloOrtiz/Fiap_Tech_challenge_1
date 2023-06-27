@@ -24,7 +24,7 @@ tab0, tab1 = st.tabs(["Percentual","Paises"])
 with tab0:
 
     st.markdown('''
-    # <div style="text-align: centerç; color: #8A2BE2;"> Análise das Exportações </div>
+    # <div style="text-align: center; color: #8A2BE2;"> Análise das Exportações </div>
 
     <p style="text-indent: 40px;"> O presente relatório fornece uma avaliação pormenorizada de nossas exportações ao longo dos últimos 15 anos. A análise é focada na contribuição percentual cumulativa de cada país para nossas exportações totais. Nossos insights são derivados de dados consolidados e apresentados em uma visualização gráfica que combina um gráfico de barras, indicando o valor total de exportações para cada país, com uma linha de percentual cumulativo que ressalta a contribuição progressiva para o total das exportações.
 
