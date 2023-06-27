@@ -7,7 +7,7 @@ image = Image.open("./src/img/download.jpg")
 st.image(image)
 
 st.markdown("""
-    ## <div style="text-align: center; color: #8A2BE2;"> Sobre o Projeto </div>
+    # <div style="text-align: center; color: #8A2BE2;"> Sobre o Projeto </div>
     
     Este projeto foi desenvolvido como parte do 1º Tech Challenge da turma de Data Science da FIAP. Foi uma oportunidade incrível para aprimorar nossas habilidades em análise de dados e colaboração em equipe, e gostaríamos de expressar nossa gratidão a todos que participaram deste desafio.
 
