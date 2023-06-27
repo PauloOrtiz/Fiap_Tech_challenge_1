@@ -64,7 +64,7 @@ with col3:
 st.markdown("""
 <h2 style="text-align: center; color: #8A2BE2;">Detalhamento da Exportação por País</h2>
 
-<p style="text-indent: 40px; font-size:18px;">A tabela a seguir fornece uma visão detalhada da exportação de vinho para cada país com o qual fizemos negócios. Nela, apresentamos o volume de venda no período deste 15 anos e o faturamento correspondente a essas vendas.</p>
+<p style="text-indent: 40px; font-size:18px;">A tabela a seguir fornece uma visão detalhada da exportação de vinho para cada país com o qual fizemos negócios. Nela, apresentamos o volume de venda no período de  15 anos e o faturamento correspondente a essas vendas.</p>
 """, unsafe_allow_html=True)
     
 st.dataframe(df_total,hide_index=True,use_container_width=True) 
