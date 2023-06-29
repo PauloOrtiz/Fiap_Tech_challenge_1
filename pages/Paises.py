@@ -4,37 +4,73 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
+import statsmodels.api as sm
 
 st.set_page_config(page_title="Evolução", page_icon="🌎")
 
 df_porpo = pd.read_csv('./src/data/porpo.csv')
 df_valores = pd.read_csv('./src/data/valores.csv')
 df_volume = pd.read_csv('./src/data/volume.csv')
+df_cotacao = pd.read_csv('./src/data/cotacao.csv')
+df_sigla= pd.read_csv('./src/data/sigla_venda_total.csv')
 
 image = Image.open("./src/img/download.jpg")
 st.image(image)
 
 
+
 # Layout do aplicativo
-tab0, tab1 = st.tabs(["Percentual","Paises"])
-
-
-
+tab0, tab1, tab2 = st.tabs(["Percentual","Paises","Dados Econômicos"])
 
 with tab0:
 
     st.markdown('''
+
     # <div style="text-align: center; color: #8A2BE2;"> Análise das Exportações </div>
 
     <p style="text-indent: 40px;"> O presente relatório fornece uma avaliação pormenorizada de nossas exportações ao longo dos últimos 15 anos. A análise é focada na contribuição percentual cumulativa de cada país para nossas exportações totais. Nossos insights são derivados de dados consolidados e apresentados em uma visualização gráfica que combina um gráfico de barras, indicando o valor total de exportações para cada país, com uma linha de percentual cumulativo que ressalta a contribuição progressiva para o total das exportações.
 
     ''', unsafe_allow_html=True)
+
+    st.markdown('''
+    # <div style="text-align: center; color: #8A2BE2;"> Nossas exportações de vinho pelo mundo!!! </div>
+
+    <p style="text-indent: 40px;">            Mapa de calor do valor das exportações somadas nos últimos 15 por país
+
+    ''', unsafe_allow_html=True)
     
+    lista = df_sigla.values.tolist()
     
+    fig = go.Figure(
+        data=go.Choropleth(
+            locations=[item[0] for item in lista],
+            z=[item[1] for item in lista],
+            colorscale='Viridis',
+            autocolorscale=False,
+            text=[f'{item[0]}: {item[1]}' for item in lista],
+            marker_line_color='white',
+            colorbar_title='Valor',
+            
+        )
+    )
+
+    #fig.update_layout(
+    #    title_text='Mapa de calor do Valor exportados por País'
+
+    #)
+
+    st.plotly_chart(fig)
+
+    st.write('''
+
+    Este relatório apresenta uma análise de nossas exportações nos últimos 15 anos, especificamente, destacando a participação percentual acumulada de cada país em nossas exportações. Nossa análise é baseada em dados que foram agregados e apresentados em uma visualização gráfica, combinando um gráfico de barras que mostra o valor total das exportações para cada país e uma linha de percentual acumulado que indica a contribuição progressiva para o total de exportações.
+    
+    ''')
 
 
-    color1 = 'steelblue'
+    color1 = 'purple'
     color2 = 'red'
+    color3 = '#8A2BE2'
     line_size = 4
 
     df_porpo['perc_acum'] = df_porpo['perc_acum'] / 100
@@ -43,8 +79,9 @@ with tab0:
     bar = go.Bar(
         x=df_porpo['group'],
         y=df_porpo['Total'],
-        marker_color=['grey' if x <= 0.80 else 'orange' for x in df_porpo['perc_acum']],
-        name='Valor em Milhões'
+        marker_color=[color3 if x <= 0.80 else color1 for x in df_porpo['perc_acum']],
+        name='Valor em Milhões',
+        
     )
 
     line = go.Scatter(
@@ -54,13 +91,14 @@ with tab0:
         marker=dict(color=color2, size=line_size),
         yaxis='y2',
         name='Percentual Acumulado'
+        
     )
 
     # Adicione "Others" ao final dos rótulos do eixo x
 
 
     layout = go.Layout(
-        title="Analise de participação nas exportações por país (ultimos 15 anos)",
+        title="Analise de Pareto da participação nas exportações por país (ultimos 15 anos)",
         xaxis=dict(
             title='País exportação',
             tickangle=45,
@@ -160,4 +198,46 @@ with tab1:
 
     <p style="text-indent: 40px;"> É importante destacar que as tendências e variações observadas podem refletir mudanças no contexto econômico global, regional ou nacional. Portanto, é fundamental interpretar esses dados considerando-se o cenário econômico mais amplo.
     
+    """, unsafe_allow_html=True)
+
+with tab2:
+
+    st.markdown("""
+    # <div style="text-align: center; color: #8A2BE2;"> Análise de Econômica dos dados </div>
+    
+    <p style="text-indent: 40px;"> Este relatório apresenta como as relações econômicas influênciam no valor do litro de vinho comercializado.
+    
+    """, unsafe_allow_html=True)
+
+
+    fig = px.scatter(df_cotacao, x='ticket_medio', y='cotacaoVenda', trendline='ols', labels={'ticket_medio': 'Ticket médio U$/Litro', 'cotacaoVenda': 'Cotação do Dólar'})
+    # Personalize o gráfico
+    fig.update_layout(
+        title={
+            'text': "Relação ticket médio e preço do dólar, últimos 15 anos",
+            'x': 0.5,
+            'y': 0.95,
+            'xanchor': 'center',
+            'yanchor': 'top'
+        }
+    )
+
+    fig.update_xaxes(
+        title_text="Ticket médio U$/Litro",
+        showticklabels=True
+    )
+
+    fig.update_yaxes(
+        title_text="Cotação do Dólar",
+        showticklabels=True
+    )
+
+    fig.add_trace(go.Scatter(name='Dados de dispersão'))  # Adiciona um nome para o trace
+
+    # Mostre o gráfico
+    st.plotly_chart(fig)
+    st.markdown("""
+    ## <div style="text-align: center; color: #8A2BE2;"> Análise dos Dados </div>
+    <p style="text-indent: 40px;"> A análise dos dados revela variações significativas do valor por litro/U$ comercializado em relação a variação do preço do dolár, impactando diretamente no valor exportado, pela análise acima pondemos concluir que conforme ha aumento na cotação do dolar maior será o preço do litro do vinho
+
     """, unsafe_allow_html=True)

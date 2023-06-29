@@ -34,14 +34,23 @@ df_filtrado_total = df_total_por_ano[df_total_por_ano['Anos'].isin(anos_selecion
 df_filtrado_volume = df_volume_por_ano[df_volume_por_ano['Anos'].isin(anos_selecionados)]
 df_filtrado_medio = df_resultado[df_resultado['Anos'].isin(anos_selecionados)] 
 
+total_faturamento = df_filtrado_total['Total'].sum()
+total_faturamento_em_milhoes = total_faturamento / 1_000_000
+
+total_volume = df_filtrado_volume ['Total'].sum()
+total_volume_em_milhares = total_volume / 1_000
+
+
+
 # Criação das 3 colunas
 col1, col2, col3 = st.columns(3)
 
 with col1:
+    
     st.markdown(f"""
                 <div style="border:2px solid #8A2BE2; padding:10px;text-align: center;">
                     <h2>Faturamento</h2>
-                    <h4 style ="text-decoration: underline;">U$ {df_filtrado_total['Total'].sum():,.2f}</h4>
+                    <h4 style ="text-decoration: underline;">U$ {total_faturamento_em_milhoes:.2f} Milhões</h4>
                 </div>
                 """, unsafe_allow_html=True)
     
@@ -49,7 +58,7 @@ with col2:
     st.markdown(f"""
                 <div style="border:2px solid #8A2BE2; padding:10px;text-align: center;">
                     <h2>Volume</h2>
-                    <h4 style ="text-decoration: underline;">{df_filtrado_volume['Total'].sum():,.0f}</h4>
+                    <h4 style ="text-decoration: underline;">{total_volume_em_milhares:,.0f} Milhares</h4>
                 </div>
                 """, unsafe_allow_html=True)
     
@@ -66,5 +75,7 @@ st.markdown("""
 
 <p style="text-indent: 40px; font-size:18px;">A tabela a seguir fornece uma visão detalhada da exportação de vinho para cada país com o qual fizemos negócios. Nela, apresentamos o volume de venda no período de  15 anos e o faturamento correspondente a essas vendas.</p>
 """, unsafe_allow_html=True)
+
+df_total = df_total[['Origem','País','Volume KG', 'Valor (US$)']]
     
 st.dataframe(df_total,hide_index=True,use_container_width=True) 
