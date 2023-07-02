@@ -12,18 +12,14 @@ df_total = pd.read_csv('./src/data/total_final.csv')
 image = Image.open("./src/img/download.jpg")
 st.image(image)
 
-
-
 st.markdown("""
-<h1 style="text-align: center; color: #8A2BE2;">Análise Geral das Exportações</h1>
+<h1 style="text-align: center; color: #8A2BE2;">Panorama Geral das Exportações de Vinhos Brasileiros</h1>
 
-<p style="text-indent: 40px; font-size:18px;">Esta análise oferece uma visão abrangente das nossas exportações de vinho, detalhando a origem dos nossos produtos, o volume exportado e o faturamento gerado por cada país com o qual negociamos.</p>
+<p style="text-indent: 40px; font-size:18px;">Desde 2007, a indústria vitivinícola brasileira tem se transformado, evoluindo suas práticas e posicionamento no mercado global. O país, conhecido por sua diversidade de uvas e terras propícias, tem solidificado seu espaço no mercado internacional de vinhos. Esta análise é o começo de uma jornada exploratória, onde vamos desvendar o volume, a receita e a diversidade dos nossos parceiros comerciais no cenário global.</p>
 
-<p style="text-indent: 40px; font-size:18px;">O objetivo deste conjunto de dados é permitir uma melhor compreensão da dinâmica do nosso comércio internacional, ajudando-nos a identificar tendências, pontos fortes e oportunidades de crescimento. Neste relatório, nosso foco é fornecer informações precisas e atualizadas que possam fundamentar decisões estratégicas para o futuro de nossa empresa.</p>
+<p style="text-indent: 40px; font-size:18px;">Cada número aqui apresentado representa uma história, um esforço coletivo de viticultores, vinicultores, trabalhadores e instituições brasileiras. Nosso objetivo é revelar essas histórias, identificar tendências e oportunidades, e fornecer uma base sólida para estratégias futuras. </p>
 
-<p style="text-indent: 40px; font-size:18px;">Para a análise, utilizamos a equivalência de 1 kg = 1 litro para padronizar nossas métricas, permitindo uma comparação justa entre diferentes produtos e volumes.</p>
-
-<p style="text-indent: 40px; font-size:18px;">Explore as informações valiosas a seguir e descubra como elas podem ser utilizadas para potencializar nosso crescimento e rentabilidade futura.</p>
+<p style="text-indent: 40px; font-size:18px;">Vamos começar nosso tour com um olhar rápido sobre três importantes indicadores de nossa exportação de vinhos: o faturamento total, o volume total e o preço médio de venda. Esses indicadores oferecem uma visão macro da nossa performance ao longo dos anos. Aprofundaremos esses e outros tópicos em análises subsequentes, então, consideramos esta uma excelente oportunidade para se familiarizar com eles.</p>
 """, unsafe_allow_html=True)
 
 # Definindo o widget no sidebar
@@ -40,8 +36,6 @@ total_faturamento_em_milhoes = total_faturamento / 1_000_000
 total_volume = df_filtrado_volume ['Total'].sum()
 total_volume_em_milhares = total_volume / 1_000
 
-
-
 # Criação das 3 colunas
 col1, col2, col3 = st.columns(3)
 
@@ -57,25 +51,25 @@ with col1:
 with col2:
     st.markdown(f"""
                 <div style="border:2px solid #8A2BE2; padding:10px;text-align: center;">
-                    <h2>Volume</h2>
+                    <h2>Volume Lts</h2>
                     <h4 style ="text-decoration: underline;">{total_volume_em_milhares:,.0f} Milhares</h4>
                 </div>
                 """, unsafe_allow_html=True)
     
 with col3:
-        st.markdown(f"""
-                    <div style="border:2px solid #8A2BE2; padding:10px; text-align: center;">
-                        <h2>Preço Médio</h2>
-                        <h4 style ="text-decoration: underline;">U$ {df_filtrado_medio['Total'].mean():,.2f}</h4>
-                    </div>
-                    """, unsafe_allow_html=True)
+    st.markdown(f"""
+                <div style="border:2px solid #8A2BE2; padding:10px; text-align: center;">
+                    <h2>Preço Médio</h2>
+                    <h4 style ="text-decoration: underline;">U$ {df_filtrado_medio['Total'].mean():,.2f} p/ Lt</h4>
+                </div>
+                """, unsafe_allow_html=True)
 
 st.markdown("""
 <h2 style="text-align: center; color: #8A2BE2;">Detalhamento da Exportação por País</h2>
 
-<p style="text-indent: 40px; font-size:18px;">A tabela a seguir fornece uma visão detalhada da exportação de vinho para cada país com o qual fizemos negócios. Nela, apresentamos o volume de venda no período de  15 anos e o faturamento correspondente a essas vendas.</p>
+<p style="text-indent: 40px; font-size:18px;">Agora que você já tem uma visão geral da nossa performance, vamos descer um nível e olhar mais de perto para cada parceiro comercial. A tabela a seguir apresenta um detalhamento das exportações de vinho para cada país com o qual fizemos negócios. Nela, você encontrará o volume e o valor das vendas realizadas ao longo do período de 15 anos. A diversidade desses dados reflete a riqueza e complexidade da indústria vitivinícola brasileira e serve como ponto de partida para análises futuras.</p>
 """, unsafe_allow_html=True)
 
 df_total = df_total[['Origem','País','Volume KG', 'Valor (US$)']]
     
-st.dataframe(df_total,hide_index=True,use_container_width=True) 
+st.dataframe(df_total,hide_index=True,use_container_width=True)
