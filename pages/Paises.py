@@ -5,6 +5,7 @@ from plotly.subplots import make_subplots
 import streamlit as st
 from PIL import Image
 import statsmodels.api as sm
+from prophet import Prophet
 
 st.set_page_config(page_title="Evolução", page_icon="🌎")
 
@@ -13,6 +14,11 @@ df_valores = pd.read_csv('./src/data/valores.csv')
 df_volume = pd.read_csv('./src/data/volume.csv')
 df_cotacao = pd.read_csv('./src/data/cotacao.csv')
 df_sigla= pd.read_csv('./src/data/sigla_venda_total.csv')
+df_boxplot_proj = pd.read_csv('./src/data/boxplot_projecao.csv')
+df_agg_boxplot_prophet = pd.read_csv('./src/data/previsao.csv')
+distribution = pd.read_csv('./src/data/base100_continente.csv')
+df_agg_grupo = pd.read_csv('./src/data/valorlitro_dolr.csv')
+df_final = pd.read_csv('./src/data/ticket_medio_continente.csv')
 
 image = Image.open("./src/img/download.jpg")
 st.image(image)
@@ -20,7 +26,7 @@ st.image(image)
 
 
 # Layout do aplicativo
-tab0, tab1, tab2 = st.tabs(["Percentual","Paises","Dados Econômicos"])
+tab0, tab1, tab2, tab3 = st.tabs(["Percentual","Paises","Dados Econômicos", "Projeção"])
 
 with tab0:
 
@@ -202,42 +208,136 @@ with tab1:
 
 with tab2:
 
-    st.markdown("""
-    # <div style="text-align: center; color: #8A2BE2;"> Análise de Econômica dos dados </div>
     
-    <p style="text-indent: 40px;"> Este relatório apresenta como as relações econômicas influênciam no valor do litro de vinho comercializado.
     
-    """, unsafe_allow_html=True)
-
-
-    fig = px.scatter(df_cotacao, x='ticket_medio', y='cotacaoVenda', trendline='ols', labels={'ticket_medio': 'Ticket médio U$/Litro', 'cotacaoVenda': 'Cotação do Dólar'})
-    # Personalize o gráfico
-    fig.update_layout(
-        title={
-            'text': "Relação ticket médio e preço do dólar, últimos 15 anos",
-            'x': 0.5,
-            'y': 0.95,
-            'xanchor': 'center',
-            'yanchor': 'top'
-        }
-    )
-
-    fig.update_xaxes(
-        title_text="Ticket médio U$/Litro",
-        showticklabels=True
-    )
-
-    fig.update_yaxes(
-        title_text="Cotação do Dólar",
-        showticklabels=True
-    )
-
-    fig.add_trace(go.Scatter(name='Dados de dispersão'))  # Adiciona um nome para o trace
-
-    # Mostre o gráfico
-    st.plotly_chart(fig)
     st.markdown("""
-    ## <div style="text-align: center; color: #8A2BE2;"> Análise dos Dados </div>
-    <p style="text-indent: 40px;"> A análise dos dados revela variações significativas do valor por litro/U$ comercializado em relação a variação do preço do dolár, impactando diretamente no valor exportado, pela análise acima pondemos concluir que conforme ha aumento na cotação do dolar maior será o preço do litro do vinho
+    <h1 style = "text-align: center; color: #8A2BE2;">Análise de evolução das exportações</h1>
+    <p style="text-indent: 40px;">Esta analise foi construida com o objetivo de identificar os melhores paises para exportar , observado a rentabilidade como principal alavanca, identificamos que a América do Sul desde 2016 se tornou o continente mais representativo de exportação chegando a 85% do volume litro exportado porém o ticket médio do valor por litro exportado é menor do que outros cotinentês e impactado pela variação do dolár
+        """,unsafe_allow_html=True )
 
-    """, unsafe_allow_html=True)
+ # Converter a distribuição em uma lista de dicionários
+    data = []
+    for column in distribution.columns:
+        data.append(go.Bar(
+            x=distribution.index,
+            y=distribution[column],
+            name=column
+        ))
+
+    # Criar o layout do gráfico
+    layout = go.Layout(
+        title='Distribuição da América do Sul nas exportações (base 100)',
+        xaxis_title='Ano e Mês de exportação',
+        yaxis_title='% de participação nas exportações',
+        barmode='stack'
+    )
+
+    # Criar a figura do gráfico
+    fig3 = go.Figure(data=data, layout=layout)
+
+    st.plotly_chart(fig3)
+
+
+    # Gerar o gráfico de barras
+    fig4 = px.bar(df_final, x='anomes', y=['ticket_medio'],barmode='group',color="Continente",
+                #title='Comparação ticket médio por litro por Continente',
+                 labels={'value': 'Valor em U$' , "anomes" : "Ano e Mês de exportação"},title='Ticket médio do valor por litro exportado em cada continente')
+    
+    # Exibir o gráfico
+
+    st.plotly_chart(fig4)
+
+
+    # Criar as linhas do gráfico
+    fig5 = go.Figure()
+
+
+    # Criar o gráfico de linha
+    for continente2 in df_agg_grupo['Continente'].unique():
+        df_continente2 = df_agg_grupo[df_agg_grupo['Continente'] == continente2]
+        fig5.add_trace(go.Scatter(x=df_continente2['anomes'], y=df_continente2['ticket_medio'], mode='lines', name=continente2))
+
+    # Personalizar o layout do gráfico
+    fig5.update_layout(
+        title='Variação do Ticket Médio Versus evolução da cotação do Dolar',
+        xaxis_title='Mês/Ano Exportação',
+        yaxis_title='Valor monetário em U$'
+    )
+
+    # Exibir o gráfico
+    st.plotly_chart(fig5)
+
+
+    st.markdown("""
+    <h1 style = "text-align: center; color: #8A2BE2;">Análise do mercado</h1>
+    <p style="text-indent: 40px;">Com o aumento da cotação do dólar e a alto participação da américa do sul nas exportações o ticket médio tem diminuido
+    <p style="text-indent: 40px;">Uma opção de aumentar/potencializar a rentalibilidade é diversificar para outros mercados a exportação de vinhos
+
+        """,unsafe_allow_html=True )    
+    
+with tab3:
+    st.markdown("""
+    <h1 style = "text-align: center; color: #8A2BE2;">Projeção de exportação para 2022</h1>
+    <p style="text-indent: 40px;">Esta analise foi contruida com objetivo de projetar a exportação para os 10 principais países em que temos comercialização
+    """,unsafe_allow_html=True )
+
+    fig3 = go.Figure()
+
+    fig3.add_trace(go.Box(
+        y=df_boxplot_proj['sumtOfExport'],
+        x=df_boxplot_proj['País'],
+        name='Boxplot',
+        line=dict(color='#8A2BE2')
+    ))
+
+    fig3.update_layout(
+        title='Identificação dos outlier dos top10 países exportadors',
+        xaxis_title='Grupo',
+        yaxis_title='Valores'
+    )
+
+    st.plotly_chart(fig3)
+
+    st.markdown("""
+    <p style="text-indent: 40px;">Após retirar os registros outliers auqe estão fora do intervalo interquartil, realizamos uma projeção de regressão linear através da biblioteca Prophet
+    """,unsafe_allow_html=True )
+
+    #Crie um dicionário de DataFrames, onde cada chave corresponda a um país e o valor seja um DataFrame filtrado por país:
+    dfs_paises = {}
+    for pais in df_agg_boxplot_prophet['country'].unique():
+        dfs_paises[pais] = df_agg_boxplot_prophet[df_agg_boxplot_prophet['country'] == pais].drop('country', axis=1)
+    #Crie um modelo Prophet para cada país e ajuste-o aos dados correspondentes:
+    modelos = {}
+    for pais, df_pais in dfs_paises.items():
+        modelo = Prophet()
+        modelo.fit(df_pais)
+        modelos[pais] = modelo
+
+
+    #Instancia e ajusta os dados ao modelo
+    datas_futuras = pd.date_range(start='2022-01-01', periods=12, freq='MS')
+    datas_futuras = pd.DataFrame({'ds': datas_futuras})
+    #Faça a projeção das vendas para cada país usando os modelos Prophet correspondentes:
+    previsoes_paises = {}
+    for pais, modelo in modelos.items():
+        previsao = modelo.predict(datas_futuras)
+        previsoes_paises[pais] = previsao
+
+    for pais, previsao in previsoes_paises.items():
+        previsao.loc[previsao['yhat'] < 0, 'yhat'] = -previsao['yhat_lower']
+        previsoes_paises[pais] = previsao
+
+    fig4 = go.Figure()
+    for pais, previsao in previsoes_paises.items():
+        fig4.add_trace(go.Scatter(
+            x=previsao['ds'],
+            y=previsao['yhat'],
+            mode='lines',
+            name=pais
+        ))
+    fig4.update_layout(
+        title='Projeção de Valor exporta por País',
+        xaxis_title='Data',
+        yaxis_title='Valor Exportado Previsto'
+    )
+    st.plotly_chart(fig4)
