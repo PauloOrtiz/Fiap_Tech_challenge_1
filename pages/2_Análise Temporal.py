@@ -21,36 +21,10 @@ image = Image.open("./src/img/download.jpg")
 st.image(image)
 
 
-tab0, tab1, tab2, tab3= st.tabs(["Preço Médio", "Faturamento","Volumetria", "Projeção"])
+tab0, tab1, tab2, tab3= st.tabs([ "Faturamento","Volumetria", "Preço Médio","Projeção"])
 
 
 with tab0:
-
-    st.markdown("""
-        <h1 style = "text-align: center; color: #8A2BE2;">Análise do Valor Médio de Venda por Litro de Vinho</h1>
-        <p style="text-indent: 40px;">Os resultados obtidos ao longo dos últimos 15 anos na venda de nosso vinho. Nesse período, observamos uma notável dinâmica no valor médio de venda por litro, o que demonstra o esforço contínuo em melhorar a qualidade de nossos produtos e a adaptação às demandas de mercado.
-        <p style="text-indent: 40px;">No gráfico abaixo, você verá a evolução do valor médio de venda por litro de vinho de 2007 a 2021. Os dados representam uma média anual, o que proporciona uma visão clara das tendências ao longo do tempo.
-        <p style="text-indent: 40px;">Ressaltamos que a nossa unidade de medida considera 1 kg de uva igual a 1 litro de vinho. Essa é uma aproximação comum na indústria e permite uma fácil interpretação e comparação dos dados.
-        <p style="text-indent: 40px;">Analise os dados e observe o compromisso da nossa equipe em buscar os melhores resultados e a valorização constante dos nossos produtos.
-    """,unsafe_allow_html=True )
-    fig = go.Figure(layout=go.Layout(
-                title=go.layout.Title(text="Evolução do Valor Médio de Venda por Litro (2007-2021)"),
-                xaxis=dict(title='Anos'),
-                yaxis=dict(title='Valor Médio (em U$)'),
-                xaxis_tickangle=45
-            ))
-
-    fig.add_trace(go.Scatter(x=df_resultado['Anos'], 
-                            y=df_resultado['Total'], 
-                            mode='lines+markers',
-                            name="Valor Médio Anual",
-                            hovertemplate='Ano: %{x} <br>Valor: U$ %{y}',
-                            line=dict(color='#8A2BE2')  # adicionando a cor roxa
-                            ))
-
-    st.plotly_chart(fig)
-
-with tab1:
     st.markdown("""
         ## <div style="text-align: center; color: #8A2BE2;">Relatório de Faturamento de Exportação</div>
 
@@ -79,10 +53,11 @@ with tab1:
         )
     )
     st.plotly_chart(fig2)
+   
 
-
+with tab1:
     
-with tab2:
+
     st.markdown("""
         <h1 style = "text-align: center; color: #8A2BE2;">Relatório de Volumetria</h1>
         <p style="text-indent: 40px;">As informações aqui fornecidas oferecem uma visão clara da evolução das nossas vendas, destacando os pontos altos e baixos deste período.
@@ -108,6 +83,35 @@ with tab2:
                             ))
 
     st.plotly_chart(fig3)
+
+
+
+    
+with tab2:
+    
+    st.markdown("""
+        <h1 style = "text-align: center; color: #8A2BE2;">Análise do Valor Médio de Venda por Litro de Vinho</h1>
+        <p style="text-indent: 40px;">Os resultados obtidos ao longo dos últimos 15 anos na venda de nosso vinho. Nesse período, observamos uma notável dinâmica no valor médio de venda por litro, o que demonstra o esforço contínuo em melhorar a qualidade de nossos produtos e a adaptação às demandas de mercado.
+        <p style="text-indent: 40px;">No gráfico abaixo, você verá a evolução do valor médio de venda por litro de vinho de 2007 a 2021. Os dados representam uma média anual, o que proporciona uma visão clara das tendências ao longo do tempo.
+        <p style="text-indent: 40px;">Ressaltamos que a nossa unidade de medida considera 1 kg de uva igual a 1 litro de vinho. Essa é uma aproximação comum na indústria e permite uma fácil interpretação e comparação dos dados.
+        <p style="text-indent: 40px;">Analise os dados e observe o compromisso da nossa equipe em buscar os melhores resultados e a valorização constante dos nossos produtos.
+    """,unsafe_allow_html=True )
+    fig = go.Figure(layout=go.Layout(
+                title=go.layout.Title(text="Evolução do Valor Médio de Venda por Litro (2007-2021)"),
+                xaxis=dict(title='Anos'),
+                yaxis=dict(title='Valor Médio (em U$)'),
+                xaxis_tickangle=45
+            ))
+
+    fig.add_trace(go.Scatter(x=df_resultado['Anos'], 
+                            y=df_resultado['Total'], 
+                            mode='lines+markers',
+                            name="Valor Médio Anual",
+                            hovertemplate='Ano: %{x} <br>Valor: U$ %{y}',
+                            line=dict(color='#8A2BE2')  # adicionando a cor roxa
+                            ))
+
+    st.plotly_chart(fig)
 
 with tab3:
     st.markdown("""

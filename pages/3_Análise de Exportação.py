@@ -20,6 +20,8 @@ distribution = pd.read_csv('./src/data/base100_continente.csv')
 df_agg_grupo = pd.read_csv('./src/data/valorlitro_dolr.csv')
 df_final = pd.read_csv('./src/data/ticket_medio_continente.csv')
 
+distribution = distribution.set_index("Ano")
+
 image = Image.open("./src/img/download.jpg")
 st.image(image)
 
