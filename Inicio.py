@@ -29,9 +29,7 @@ st.markdown("""
 
 <p style="text-indent: 20px;"><b>5. Principais Destinos de Exportação:</b> Uma análise de Pareto que mostra os principais países para os quais exportamos nossos vinhos.</p>
 
-<p style="text-indent: 20px;"><b>6. Produção e Comercialização de Vinho:</b> Uma análise do volume de produção e comercialização de vinho no Brasil durante o período de 2007 a 2021.</p>
-
-<p style="text-indent: 20px;"><b>7. Importação vs Exportação:</b> Uma análise comparativa entre os volumes de importação e exportação de vinho no Brasil.</p>
+<p style="text-indent: 20px;"><b>6. Importação vs Exportação:</b> Uma análise comparativa entre os volumes de importação e exportação de vinho no Brasil.</p>
 
 <h2 style="color: #8A2BE2;">Construído para Você</h2>
 

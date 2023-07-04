@@ -400,6 +400,10 @@ df_agg_boxplot_outliers['Data'] = pd.to_datetime(df_agg_boxplot_outliers['anomes
 df_agg_boxplot_prophet = df_agg_boxplot_outliers.rename(columns={'Data': 'ds', 'sumtOfExport': 'y','País': 'country',})
 
 
+df_cotacao2 = df_cotacao
+
+df_cotacao2['Ticket_medio_Brl'] = df_cotacao2['cotacaoVenda'] * df_cotacao2['ticket_medio']
+
 
 #exportanto os dataframes tratados:
 
@@ -414,3 +418,4 @@ df_cotacao.to_csv('./src/data/cotacao.csv', index=True)
 agg.to_csv('./src/data/sigla_venda_total.csv', index=False)
 df_agg_boxplot_10.to_csv('./src/data/boxplot_projecao.csv')
 df_agg_boxplot_prophet.to_csv('./src/data/previsao.csv', index=False)
+df_cotacao2.to_csv('./src/data/cotacao2.csv', index=True)
