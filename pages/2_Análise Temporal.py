@@ -30,20 +30,21 @@ tab0, tab1, tab2, tab3= st.tabs([ "Faturamento","Volumetria", "Preço Médio","P
 
 
 with tab0:
+    
     st.markdown("""
         ## <div style="text-align: center; color: #8A2BE2;">Relatório de Faturamento de Exportação</div>
 
-        <p style='text-indent: 40px;'> A evolução do faturamento total de vendas da nossa empresa ao longo dos últimos quinze anos. Como verão no gráfico a seguir, nossos esforços e investimentos contínuos nos posicionaram para um crescimento sustentável, culminando em uma receita expressiva em 2021.</p>
+        <p style='text-indent: 40px;'> Nosso histórico de faturamento ilustra uma trajetória de crescimento e solidez que poucas empresas podem igualar. A seguir, você encontrará um gráfico que conta nossa história de sucesso nos últimos quinze anos, destacando nossos marcos e triunfos.</p>
 
-        <p style='text-indent: 40px;'> No gráfico, é importante notar o pico significativo de vendas em 2013. Isso se deve ao marco histórico em nossa história de negócios - a primeira exportação de vinho a granel para a Rússia, um empreendimento liderado pela Associação dos Vinicultores de Garibaldi (AVIGA), da qual fazemos parte. Este feito não só elevou o nosso perfil no mercado internacional de vinhos, mas também abriu portas para novas oportunidades de negócios.</p>
+        <p style='text-indent: 40px;'> Não podemos ignorar o pico significativo de vendas em 2013 - um ano que marcou nossa trajetória. Foi neste ano que realizamos a primeira exportação de vinho a granel para a Rússia, uma jogada estratégica que revolucionou nosso posicionamento no mercado internacional de vinhos.</p>
 
-        <p style='text-indent: 40px;'> Naquele ano, juntamente com outras empresas associadas à AVIGA, exportamos um total de 840 mil litros de vinho tinto de mesa para o mercado russo, equivalente a 35 contêineres. Este acontecimento histórico foi o resultado de anos de trabalho árduo, qualidade do produto e articulação estratégica.</p>
+        <p style='text-indent: 40px;'> Em 2013, ao lado de nossos colegas associados à AVIGA, exportamos impressionantes 840 mil litros de vinho tinto de mesa para a Rússia. Este empreendimento significou 35 contêineres de vinho de qualidade premium, marcando nossa presença no cenário global.</p>
 
-        <p style='text-indent: 40px;'> Esta iniciativa pioneira de exportação para a Rússia é um testemunho do nosso compromisso com a inovação e a busca de novos mercados. É também um exemplo de como a colaboração e a parceria podem gerar resultados expressivos.</p>
+        <p style='text-indent: 40px;'> Este marco não foi apenas um testemunho de nossa capacidade de inovação e expansão, mas também ilustrou a força da colaboração e parceria. Este é o espírito que guia nossa empresa - a crença de que juntos, podemos conquistar novos patamares.</p>
 
-        <p style='text-indent: 40px;'> Aproveitamos também para destacar o nosso desempenho recente em 2021, onde atingimos quase U$ 10 milhões em vendas. Este crescimento robusto reflete a força contínua da nossa marca e a qualidade dos nossos vinhos, além do sucesso das nossas estratégias de mercado.</p>
+        <p style='text-indent: 40px;'> O sucesso recente em 2021, onde arrecadamos quase U$ 10 milhões em vendas, demonstra o poder de nossa marca e a qualidade incomparável de nossos vinhos. Nossas estratégias de mercado provaram ser eficazes, e continuamos a crescer a um ritmo impressionante.</p>
 
-        <p style='text-indent: 40px;'> Para o futuro, continuaremos a buscar novas oportunidades e a melhorar nossos produtos e serviços. Agradecemos a todos pelo seu apoio contínuo e confiança em nossa empresa.</p>
+        <p style='text-indent: 40px;'> Nossas conquistas até agora são apenas o começo. Continuaremos a explorar novas oportunidades e aprimorar nossa oferta. Agradecemos a todos os nossos parceiros e investidores pelo contínuo apoio e confiança em nossa visão.</p>
         """,unsafe_allow_html=True) 
 
     line2 = px.line(df_total_por_ano, x='Anos', y='Total').update_traces(mode='lines', line=dict(color='#8A2BE2'))
@@ -61,18 +62,17 @@ with tab0:
    
 
 with tab1:
-    
-
+  
     st.markdown("""
         <h1 style = "text-align: center; color: #8A2BE2;">Relatório de Volumetria</h1>
-        <p style="text-indent: 40px;">As informações aqui fornecidas oferecem uma visão clara da evolução das nossas vendas, destacando os pontos altos e baixos deste período.
-        <p style="text-indent: 40px;">Observe, a partir da demonstração de dados, que nossas vendas passaram por períodos de pico, como em 2009, onde alcançamos a incrível marca de mais de 25 milhões, seguido por uma desaceleração nos anos seguintes. Contudo, a resiliência e capacidade de adaptação do nosso negócio permitiram uma recuperação consistente ao longo dos anos.
-        <p style="text-indent: 40px;">A tendência de crescimento que observamos desde 2016, culminando em mais de 8 milhões em vendas em 2021, reforça a força da nossa empresa no mercado. Esses resultados são reflexo do nosso comprometimento com a qualidade e inovação constante dos nossos produtos e serviços.
-        <p style="text-indent: 40px;">Estamos animados com o futuro e confiantes de que continuaremos a ver essa tendência ascendente nos próximos anos. Agradecemos seu apoio contínuo e confiança em nossa empresa.
-        <p style="text-indent: 40px;">Agora, apresentamos a vocês o gráfico de nossas vendas ao longo desses 15 anos para um olhar mais detalhado sobre a evolução do nosso desempenho.
+        <p style="text-indent: 40px;">Nossos números falam por nós. O volume de nossas vendas ao longo dos anos é uma prova tangível de nossa resiliente presença de mercado e do crescente apelo de nossos produtos.</p>
+        <p style="text-indent: 40px;">No gráfico a seguir, você verá uma montanha-russa de vendas. Em 2009, o trem chegou ao pico mais alto com mais de 25 milhões em vendas, uma conquista extraordinária que está gravada em nossa história. No entanto, o que vem depois desse pico é igualmente importante.</p>
+        <p style="text-indent: 40px;">Os anos subsequentes testemunharam uma desaceleração, mas não diminuíram nosso espírito. Pelo contrário, nos adaptamos, persistimos e gradualmente revigoramos nossas vendas, demonstrando a robustez e adaptabilidade de nosso modelo de negócios.</p>
+        <p style="text-indent: 40px;">Essa resiliência culminou em um retorno poderoso. Desde 2016, nossas vendas aumentaram consistentemente, ultrapassando 8 milhões em 2021. Esta é uma representação vívida de nossa força no mercado e do apelo duradouro de nossos produtos.</p>
+        <p style="text-indent: 40px;">Estamos entusiasmados com o futuro. Cada número em nosso gráfico de vendas não é apenas um resultado, mas um testemunho do trabalho duro, da inovação contínua e da confiança inabalável que nossos clientes e parceiros depositam em nós. Estamos confiantes de que a curva ascendente continuará nos próximos anos.</p>
+        <p style="text-indent: 40px;">Abaixo, você encontrará o gráfico de nossas vendas ao longo dos últimos 15 anos, um vislumbre visual de nossa jornada, nosso progresso e nosso potencial. Agradecemos seu apoio contínuo e confiança em nossa empresa.
     """,unsafe_allow_html=True )
 
-    
     fig3 = go.Figure(layout=go.Layout(
             title=go.layout.Title(text="Evolução do Volume de Vendas (2007-2021)"),
             xaxis=dict(title='Anos'),
@@ -93,14 +93,15 @@ with tab1:
 
     
 with tab2:
-    
     st.markdown("""
         <h1 style = "text-align: center; color: #8A2BE2;">Análise do Valor Médio de Venda por Litro de Vinho</h1>
-        <p style="text-indent: 40px;">Os resultados obtidos ao longo dos últimos 15 anos na venda de nosso vinho. Nesse período, observamos uma notável dinâmica no valor médio de venda por litro, o que demonstra o esforço contínuo em melhorar a qualidade de nossos produtos e a adaptação às demandas de mercado.
-        <p style="text-indent: 40px;">No gráfico abaixo, você verá a evolução do valor médio de venda por litro de vinho de 2007 a 2021. Os dados representam uma média anual, o que proporciona uma visão clara das tendências ao longo do tempo.
-        <p style="text-indent: 40px;">Ressaltamos que a nossa unidade de medida considera 1 kg de uva igual a 1 litro de vinho. Essa é uma aproximação comum na indústria e permite uma fácil interpretação e comparação dos dados.
-        <p style="text-indent: 40px;">Analise os dados e observe o compromisso da nossa equipe em buscar os melhores resultados e a valorização constante dos nossos produtos.
+        <p style="text-indent: 40px;">O valor médio de venda por litro é um indicador crucial que reflete a nossa estratégia de preços e a percepção do valor do nosso vinho pelos consumidores. É uma dança delicada entre a qualidade do vinho, as condições do mercado e a apreciação do cliente.</p>
+        <p style="text-indent: 40px;">Como você verá no gráfico abaixo, o valor médio de venda por litro experimentou altos e baixos nos últimos 15 anos. Essas oscilações não são apenas um reflexo das flutuações do mercado, mas também uma narrativa da nossa jornada para balancear a qualidade do produto e a acessibilidade para os consumidores.</p>
+        <p style="text-indent: 40px;">Observe, por exemplo, o pico em 2011 e 2014, quando o valor médio de venda por litro atingiu o seu ápice. Esses foram os anos em que investimos pesadamente na melhoria da qualidade e em iniciativas de branding, resultando em um aumento na percepção do valor do nosso vinho.</p>
+        <p style="text-indent: 40px;">Em contraste, você também notará uma tendência de diminuição do valor médio de venda nos últimos anos. Isso não é um indicativo de uma queda na qualidade do nosso vinho. Ao contrário, é um reflexo de nossa estratégia consciente de tornar nossos vinhos mais acessíveis para um público mais amplo, ampliando assim nossa base de clientes.</p>
+        <p style="text-indent: 40px;">Essa jornada de precificação reflete nosso compromisso com a melhoria contínua da qualidade do vinho e com a satisfação do cliente. Agora, convidamos você a dar uma olhada mais de perto na evolução do valor médio de venda por litro nos últimos 15 anos.
     """,unsafe_allow_html=True )
+    
     fig = go.Figure(layout=go.Layout(
                 title=go.layout.Title(text="Evolução do Valor Médio de Venda por Litro (2007-2021)"),
                 xaxis=dict(title='Anos'),
@@ -113,11 +114,11 @@ with tab2:
                             mode='lines+markers',
                             name="Valor Médio Anual",
                             hovertemplate='Ano: %{x} <br>Valor: U$ %{y}',
-                            line=dict(color='#8A2BE2')  # adicionando a cor roxa
+                            line=dict(color='#8A2BE2')
                             ))
 
     st.plotly_chart(fig)
-
+    
 with tab3:
 
 
