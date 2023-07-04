@@ -129,7 +129,7 @@ with tab0:
     st.markdown('''
     ## <div style="text-align: center; color: #8A2BE2;"> Análise dos Dados </div>
 
-    <p style="text-indent: 40px;"> O gráfico demonstra claramente que nossas exportações são altamente concentradas em poucos países.
+    <p style="text-indent: 41px;"> O gráfico demonstra claramente que nossas exportações são altamente concentradas em poucos países.
 
     <p style="text-indent: 40px;"> Os primeiros países na lista - Paraguai, Rússia, Estados Unidos, Reino Unido , China e Países baixos - representam a maior parte do valor total das nossas exportações. Especificamente, o Paraguai e a Rússia sozinhos representam mais 55s% do valor total das nossas exportações. Esta concentração em um pequeno número de mercados apresenta riscos e oportunidades.
 
