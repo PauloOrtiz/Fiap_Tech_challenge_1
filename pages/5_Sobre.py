@@ -29,14 +29,20 @@ st.markdown("""
     ### <div style="text-align: center; color: #8A2BE2;"> Agradecimentos </div>
 
     Também gostaríamos de agradecer aos nossos colegas de classe e a todos os envolvidos na organização deste desafio.
+        
+    <h2 style="text-align: center; color: #8A2BE2;">Referências 📚</h2>
 
-    ### <div style="text-align: center; color: #8A2BE2;"> Referências </div>
+    <p style="text-indent: 40px;">
+    <strong>VitiBrasil</strong>. Base de dados. Disponível em: http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_01. Acesso em: 24 jun. 2023.
+    </p>
 
-    Os dados utilizados neste projeto foram coletados a partir dos seguintes recursos:
+    <p style="text-indent: 40px;">
+    <strong>AviGa</strong>. Notícias. Disponível em: 'http://www.aviga.com.br/'. Acesso em: 24 jun. 2023.
+    </p>
 
-    - Base de dados principal: [VitiBrasil](http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_01)
-    - Notícias: [AviGa](http://www.aviga.com.br/)
-    - Dataset complementar: [Banco Central do Brasil](https://dadosabertos.bcb.gov.br/dataset/dolar-americano-usd-todos-os-boletins-diarios)
-    
+    <p style="text-indent: 40px;">
+    <strong>Banco Central do Brasil</strong>. Dataset complementar. Disponível em: https://dadosabertos.bcb.gov.br/dataset/dolar-americano-usd-todos-os-boletins-diarios'. Acesso em: 24 jun. 2023.
+    </p>
+        
     Gostaríamos de expressar nossa gratidão a todas estas fontes por disponibilizar esses dados publicamente.
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
